@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DebrisToys.UI.Control">
+    <Style TargetType="local:TargetAppListCard">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:TargetAppListCard">
+                    <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                            BorderThickness="{ThemeResource CardBorderThickness}">
+                        <ListView x:Name="PART_MainListView">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <local:TargetAppListCardItem AppName="{Binding AppName}" IsEnabled="{Binding IsEnabled}"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

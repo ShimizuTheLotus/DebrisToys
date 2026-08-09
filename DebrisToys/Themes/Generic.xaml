@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DebrisToys">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Themes/RightAlignedCompactToggleSwitchStyle.xaml" />
+        <ResourceDictionary Source="/Themes/Page.xaml" />
+        <ResourceDictionary Source="/Themes/Brush.xaml" />
+        <ResourceDictionary Source="/UI/Control/Card.xaml" />
+        <ResourceDictionary Source="/UI/Control/TargetAppListCard.xaml" />
+        <ResourceDictionary Source="/UI/Control/TargetAppListCardItem.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

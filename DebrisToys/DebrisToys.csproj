@@ -1,0 +1,93 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+		<RootNamespace>DebrisToys</RootNamespace>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<Platforms>x86;x64;ARM64</Platforms>
+		<RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+		<UseWinUI>true</UseWinUI>
+
+		<WinUISDKReferences>false</WinUISDKReferences>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+	<ItemGroup>
+	  <None Remove="Themes\Brush.xaml" />
+	  <None Remove="Toys\IMEBlocker\IMEBlockerPage.xaml" />
+	  <None Remove="UI\Control\Card.xaml" />
+	  <None Remove="UI\Control\Page.xaml" />
+	  <None Remove="UI\Control\TargetAppListCardItem.xaml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Remove="UI\RightAlignedCompactToggleSwitchStyle.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Manifest Include="$(ApplicationManifest)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.2526" />
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="2.3.1" />
+		<PackageReference Include="System.Windows.Forms" Version="4.0.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(UseWindowsForms)' == 'true' OR '$(UseWPF)' == 'true'">
+		<Reference Include="System.Windows.Forms" />
+		<Reference Include="System.Drawing" />
+		<Reference Include="PresentationCore" />
+		<Reference Include="PresentationFramework" />
+		<Reference Include="WindowsBase" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Class\" />
+		<Folder Include="UI\Window\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\LocalProj\ShimizuToolkit.HotkeyWinUI.Controls\ShimizuToolkit.HotkeyWinUI.Controls.csproj" />
+		<ProjectReference Include="..\..\..\LocalProj\ShimizuToolkit.HotkeyWinUI\ShimizuToolKit.HotkeyWinUI.csproj" />
+		<ProjectReference Include="..\..\..\LocalProj\ShimizuToolkit.TrayIconWinUI\ShimizuToolkit.TrayIconWinUI.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Page Update="Toys\NoTaskbar\NoTaskbarPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	  <Page Update="UI\Control\Card.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	  <Page Update="UI\Control\Page.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	  <Page Update="Themes\Brush.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	  <None Update="Themes\RightAlignedCompactToggleSwitchStyle.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </None>
+	  <Page Update="UI\Control\TargetAppListCardItem.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	  <Page Update="UI\Control\TargetAppListCard.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	  <Page Update="Toys\IMEBlocker\IMEBlockerPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	  <None Update="UI\TrayWindow.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </None>
+	</ItemGroup>
+
+	<!-- Publish Properties -->
+	<PropertyGroup>
+		<PublishReadyToRun Condition="'$(Configuration)' == 'Debug'">False</PublishReadyToRun>
+		<PublishReadyToRun Condition="'$(Configuration)' != 'Debug'">True</PublishReadyToRun>
+		<PublishTrimmed Condition="'$(Configuration)' == 'Debug'">False</PublishTrimmed>
+		<PublishTrimmed Condition="'$(Configuration)' != 'Debug'">True</PublishTrimmed>
+		<NeutralLanguage>en-US</NeutralLanguage>
+	</PropertyGroup>
+</Project>

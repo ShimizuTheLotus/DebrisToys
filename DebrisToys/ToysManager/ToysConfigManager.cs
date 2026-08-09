@@ -1,0 +1,94 @@
+﻿using DebrisToys.Toys.IMEBlocker;
+using DebrisToys.ToysManager.Base;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DebrisToys.ToysManager
+{
+    public partial class ToysConfigManager
+    {
+        public readonly string BaseConfigPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config");
+        public HashSet<ToyConfigBase> ToyConfigs { get; private set; } = [];
+        public ToysConfigManager()
+        {
+        }
+        public static ToysConfigManager Current
+        {
+            get => LazyInitializer.Instance;
+        }
+        private static class LazyInitializer
+        {
+            static LazyInitializer()
+            {
+            }
+            public static readonly ToysConfigManager Instance = new();
+        }
+
+        public void Initialize()
+        {
+            ToyConfigs = new()
+            {
+                IMEBlockerConfig.Current
+            };
+            foreach (var config in ToyConfigs)
+            {
+                config.ApplyConfig();
+            }
+        }
+
+        public T? GetToyConfig<T>() where T : ToyConfigBase
+        {
+            var config = ToyConfigs.OfType<T>().FirstOrDefault();
+            return config;
+        }
+
+        public void AddToyConfig(ToyConfigBase config)
+        {
+            if (!ToyConfigs.Contains(config))
+            {
+                ToyConfigs.Add(config);
+            }
+        }
+
+        public async Task<string> GetConfig(string path)
+        {
+            string fullPath = System.IO.Path.Combine(BaseConfigPath, path);
+            if (File.Exists(fullPath))
+            {
+                try
+                {
+                    var text = await File.ReadAllTextAsync(System.IO.Path.Combine(BaseConfigPath, fullPath));
+                    return text;
+                }
+                catch
+                {
+                    return string.Empty;
+                }
+            }
+            return string.Empty;
+        }
+
+        public async void SaveConfig(string path, string content)
+        {
+            try
+            {
+                string fullPath = System.IO.Path.Combine(BaseConfigPath, path);
+                string? directory = Path.GetDirectoryName(fullPath);
+                if (!string.IsNullOrEmpty(directory))
+                {
+                    if (!Directory.Exists(directory))
+                    {
+                        Directory.CreateDirectory(directory);
+                    }
+                }
+                await File.WriteAllTextAsync(fullPath, content);
+            }
+            catch { }
+        }
+    }
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="DebrisToys.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="using:DebrisToys"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="DebrisToys">
+
+    <Window.SystemBackdrop>
+        <MicaBackdrop />
+    </Window.SystemBackdrop>
+    <Grid>
+        <NavigationView x:Name="NavigationView"
+                        ItemInvoked="NavigationView_ItemInvoked">
+            <Frame x:Name="NavigationFrame" />
+            <NavigationView.MenuItems>
+                <NavigationViewItem x:Name="NoTaskbarItem"
+                                    Content="No Taskbar"
+                                    x:Uid="MainWindow_NavigationView_Item_NoTaskBar.Content">
+                    <NavigationViewItem.Icon>
+                        <BitmapIcon UriSource="ms-appx:///Images/Icon/NoTaskBar.png"
+                                    ShowAsMonochrome="False" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem x:Name="IMEBlockerItem"
+                                    Content="IME Blocker"
+                                    x:Uid="MainWindow_NavigationView_Item_IMEBlocker.Content">
+                    <NavigationViewItem.Icon>
+                        <ImageIcon Source="ms-appx:///Images/Icon/IMEBlocker.svg" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+        </NavigationView>
+    </Grid>
+</Window>

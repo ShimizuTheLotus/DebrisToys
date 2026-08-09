@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page x:Class="DebrisToys.Toys.NoTaskbar.NoTaskbarPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:DebrisToys.Toys.NoTaskbar"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:ui="using:DebrisToys.UI.Control"
+      mc:Ignorable="d">
+
+    <StackPanel Margin="{ThemeResource ToolPagePadding}">
+        <ui:Card x:Uid="Toys_NoTaskbar_Card_Toggle">
+            <ui:Card.IconElement>
+                <BitmapIcon UriSource="ms-appx:///Images/Icon/NoTaskBar.png"
+                            ShowAsMonochrome="False" />
+            </ui:Card.IconElement>
+            <ui:Card.RightPartElement>
+                <ToggleSwitch x:Name="TaskbarToggleSwitch"
+                              Style="{ThemeResource RightAlignedCompactToggleSwitchStyle}"
+                              Toggled="TaskbarToggleSwitch_Toggled" />
+            </ui:Card.RightPartElement>
+        </ui:Card>
+    </StackPanel>
+</Page>
