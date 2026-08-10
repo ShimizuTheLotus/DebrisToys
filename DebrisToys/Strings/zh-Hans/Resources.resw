@@ -138,4 +138,7 @@
   <data name="Toys_IMEBlocker_TargetAppListCard_Option_Add.Content" xml:space="preserve">
     <value>添加</value>
   </data>
+  <data name="Settings_LaunchOnStartup.Title" xml:space="preserve">
+    <value>开机自启动</value>
+  </data>
 </root>

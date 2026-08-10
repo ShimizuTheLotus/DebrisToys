@@ -18,6 +18,7 @@
 	  <None Remove="UI\Control\Card.xaml" />
 	  <None Remove="UI\Control\Page.xaml" />
 	  <None Remove="UI\Control\TargetAppListCardItem.xaml" />
+	  <None Remove="UI\Page\SettingsPage.xaml" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Page Remove="UI\RightAlignedCompactToggleSwitchStyle.xaml" />
@@ -68,6 +69,9 @@
 	  <None Update="Themes\RightAlignedCompactToggleSwitchStyle.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </None>
+	  <Page Update="UI\Page\SettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
 	  <Page Update="UI\Control\TargetAppListCardItem.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </Page>

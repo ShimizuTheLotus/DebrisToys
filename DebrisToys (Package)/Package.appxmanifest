@@ -4,9 +4,10 @@
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
   xmlns:systemai="http://schemas.microsoft.com/appx/manifest/systemai/windows10"
-  IgnorableNamespaces="uap rescap systemai">
+  IgnorableNamespaces="uap uap5 rescap systemai">
 
   <Identity
     Name="4dd98132-956a-4c51-a0fe-2e1ebd133665"
@@ -16,7 +17,7 @@
   <mp:PhoneIdentity PhoneProductId="4dd98132-956a-4c51-a0fe-2e1ebd133665" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>DebrisToys (Package)</DisplayName>
+    <DisplayName>DebrisToys</DisplayName>
     <PublisherDisplayName>ChiSu</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
@@ -35,7 +36,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="DebrisToys (Package)"
+        DisplayName="DebrisToys"
         Description="DebrisToys (Package)"
         BackgroundColor="transparent"
         Square150x150Logo="Images\Square150x150Logo.png"
@@ -43,6 +44,11 @@
         <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png" />
         <uap:SplashScreen Image="Images\SplashScreen.png" />
       </uap:VisualElements>
+		<Extensions>
+			<uap5:Extension Category="windows.startupTask" EntryPoint="DebrisToys.App" Executable="DebrisToys.exe">
+				<uap5:StartupTask DisplayName="DebrisToys" Enabled="true" TaskId="DebrisToys"/>
+			</uap5:Extension>
+		</Extensions>
     </Application>
   </Applications>
 

@@ -35,6 +35,10 @@ namespace DebrisToys
         {
             if (args.InvokedItem == null) return;
             Type navigationTargetType = default!;
+            if (args.IsSettingsInvoked)
+            {
+                navigationTargetType = typeof(DebrisToys.UI.Page.SettingsPage);
+            }
             if (args.InvokedItem == NoTaskbarItem.Content)
             {
                 navigationTargetType = typeof(NoTaskbarPage);
