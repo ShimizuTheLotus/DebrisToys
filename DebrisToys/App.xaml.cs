@@ -1,4 +1,5 @@
 ﻿using DebrisToys.ToysManager;
+using DebrisToys.ToysManager.Interface;
 using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -17,6 +18,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Windows.Forms;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -41,6 +43,12 @@ namespace DebrisToys
         public App()
         {
             InitializeComponent();
+            AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
+        }
+
+        private void CurrentDomain_ProcessExit(object? sender, EventArgs e)
+        {
+            ToysConfigManager.Current.RecoverStatus();
         }
 
         /// <summary>
@@ -103,5 +111,6 @@ namespace DebrisToys
         {
             App.Current.Exit();
         }
+
     }
 }

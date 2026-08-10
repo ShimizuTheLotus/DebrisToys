@@ -1,5 +1,7 @@
 ﻿using DebrisToys.Toys.IMEBlocker;
+using DebrisToys.Toys.NoTaskbar;
 using DebrisToys.ToysManager.Base;
+using DebrisToys.ToysManager.Interface;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,6 +16,7 @@ namespace DebrisToys.ToysManager
     {
         public readonly string BaseConfigPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config");
         public HashSet<ToyConfigBase> ToyConfigs { get; private set; } = [];
+        public HashSet<ToyBase> Toys { get; private set; } = [];
         public ToysConfigManager()
         {
         }
@@ -31,14 +34,19 @@ namespace DebrisToys.ToysManager
 
         public void Initialize()
         {
-            ToyConfigs = new()
-            {
+            ToyConfigs =
+            [
+                NoTaskbarConfig.Current,
                 IMEBlockerConfig.Current
-            };
-            foreach (var config in ToyConfigs)
-            {
-                config.ApplyConfig();
-            }
+            ];
+
+            Toys =
+            [
+                TaskbarHideToy.Current,
+                IMEBlocker.Current
+            ];
+
+            RunToys();
         }
 
         public T? GetToyConfig<T>() where T : ToyConfigBase
@@ -52,6 +60,22 @@ namespace DebrisToys.ToysManager
             if (!ToyConfigs.Contains(config))
             {
                 ToyConfigs.Add(config);
+            }
+        }
+
+        public void RunToys()
+        {
+            foreach (var toy in Toys)
+            {
+                toy.AutoStart();
+            }
+        }
+
+        public void RecoverStatus()
+        {
+            foreach (var toy in Toys)
+            {
+                toy.RecoverStatus();
             }
         }
 

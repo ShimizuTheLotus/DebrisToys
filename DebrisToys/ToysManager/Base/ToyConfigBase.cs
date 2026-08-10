@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DebrisToys.ToysManager.Base
 {
@@ -9,7 +10,7 @@ namespace DebrisToys.ToysManager.Base
     {
         public Dictionary<string, Action> RelativePathApplyActionPair { get; set; } = [];
         public List<ShimizuToolkit.HotkeyWinUI.HotKeyInfo> HotkeyInfos { get; private set; } = [];
-        public abstract void ApplyConfig();
+        public abstract Task ApplyConfig();
         public abstract void SaveConfig();
         public abstract List<ShimizuToolkit.HotkeyWinUI.HotKeyInfo> CheckConflicts();
     }

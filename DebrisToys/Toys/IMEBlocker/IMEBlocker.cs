@@ -1,4 +1,6 @@
 ﻿using DebrisToys.ToysManager;
+using DebrisToys.ToysManager.Base;
+using DebrisToys.ToysManager.Interface;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -10,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DebrisToys.Toys.IMEBlocker
 {
-    public class IMEBlocker
+    public class IMEBlocker : ToyBase
     {
         private IntPtr _foregroundHook = IntPtr.Zero;
         private Win32.WinEventDelegate? _foregroundDelegate;
@@ -164,6 +166,20 @@ namespace DebrisToys.Toys.IMEBlocker
             catch
             {
             }
+        }
+
+        public override void AutoStart()
+        {
+            IMEBlockerConfig.Current.ApplyConfig();
+            if (IMEBlockerConfig.Current.IsEnabled)
+            {
+                IMEBlocker.Current.Start();
+            }
+        }
+
+        public override void RecoverStatus()
+        {
+            IMEBlocker.Current.Stop();
         }
     }
 }

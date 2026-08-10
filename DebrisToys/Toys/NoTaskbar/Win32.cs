@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace DebrisToys.Toys.NoTaskbar
 {
-    public static class TaskbarInteraction
+    public static class Win32
     {
         public static bool IsHideLoop = false;
         [DllImport("user32.dll")]
-        private static extern IntPtr FindWindow(string lpClassName, string? lpWindowName);
+        public static extern IntPtr FindWindow(string lpClassName, string? lpWindowName);
 
         [DllImport("user32.dll")]
-        private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+        public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
         public struct Win32API_RECT
         {
             public int Left, Top, Right, Bottom;
@@ -153,47 +153,11 @@ namespace DebrisToys.Toys.NoTaskbar
 
         // Taskbar state consts
 
-        private const int SW_HIDE = 0;
-        private const int SW_SHOW = 5;
+        public const int SW_HIDE = 0;
+        public const int SW_SHOW = 5;
 
 
         // Taskbar state methods
-
-        public static async void HideTaskbar(NoTaskbarConfig config)
-        {
-            var handle = FindWindow("Shell_TrayWnd", null);
-            if (handle != IntPtr.Zero)
-            {
-                ShowWindow(handle, SW_HIDE);
-                Win32API_SetTaskbarState(Win32API_AppBarStates.AutoHide);
-                ShowWindow(handle, SW_HIDE);
-                IsHideLoop = true;
-                StartHideBarLoop();
-                config.IsEnabled = true;
-            }
-        }
-
-        public static void ShowTaskbar(NoTaskbarConfig config)
-        {
-            var handle = FindWindow("Shell_TrayWnd", null);
-            if (handle != IntPtr.Zero)
-            {
-                Win32API_SetTaskbarState(Win32API_AppBarStates.AlwaysOnTop);
-                ShowWindow(handle, SW_SHOW);
-                IsHideLoop = false;
-                config.IsEnabled = false;
-            }
-        }
-
-        public static async void StartHideBarLoop()
-        {
-            while (IsHideLoop)
-            {
-                var handle = FindWindow("Shell_TrayWnd", null);
-                ShowWindow(handle, SW_HIDE);
-                await Task.Delay(100);
-            }
-        }
     }
 
 }

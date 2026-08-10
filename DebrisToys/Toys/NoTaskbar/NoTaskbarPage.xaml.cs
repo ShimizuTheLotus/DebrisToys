@@ -38,16 +38,20 @@ namespace DebrisToys.Toys.NoTaskbar
 
         private void NoTaskbarConfig_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if(e.PropertyName == nameof(NoTaskbarConfig.IsEnabled))
+            if (e.PropertyName == nameof(NoTaskbarConfig.IsEnabled))
             {
-                TaskbarToggleSwitch.IsOn = Config.IsEnabled;
+                if (TaskbarToggleSwitch.IsOn != Config.IsEnabled)
+                {
+                    TaskbarToggleSwitch.IsOn = Config.IsEnabled;
+                }
+
                 if (Config.IsEnabled)
                 {
-                    TaskbarInteraction.HideTaskbar(Config);
+                    TaskbarHideToy.Current.HideTaskbar();
                 }
                 else
                 {
-                    TaskbarInteraction.ShowTaskbar(Config);
+                    TaskbarHideToy.Current.ShowTaskbar();
                 }
             }
         }
@@ -85,12 +89,14 @@ namespace DebrisToys.Toys.NoTaskbar
 
         private void TaskbarToggleSwitch_Toggled(object sender, RoutedEventArgs e)
         {
-            if(sender is ToggleSwitch toggleSwitch)
+            if (sender is ToggleSwitch toggleSwitch)
             {
                 bool isOn = toggleSwitch.IsOn;
-                Config.IsEnabled = isOn;
+                if (Config.IsEnabled != isOn)
+                {
+                    Config.IsEnabled = isOn;
+                }
             }
         }
-        
     }
 }

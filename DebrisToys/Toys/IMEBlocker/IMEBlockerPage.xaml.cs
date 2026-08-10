@@ -29,6 +29,7 @@ namespace DebrisToys.Toys.IMEBlocker
     /// </summary>
     public sealed partial class IMEBlockerPage : Page
     {
+        
         public IMEBlockerConfig Config { get; set; } = IMEBlockerConfig.Current;
         public IMEBlocker IMEBlocker { get; set; } = IMEBlocker.Current;
         private void RegisterConfigPropertyChanged()
@@ -86,10 +87,10 @@ namespace DebrisToys.Toys.IMEBlocker
             Config.TargetAppList.Add(new()
             {
                 AppName = NormalizeName(AddOptionAppNameTextBlock.Text),
-                OnChangedAcion = () => Config.SaveConfig()
+                OnChangedAcion = () => Config.SaveTargetAppConfig()
             });
             AddOptionAppNameTextBlock.Text = string.Empty;
-            Config.SaveConfig();
+            Config.SaveTargetAppConfig();
         }
         private static string NormalizeName(string name)
         {

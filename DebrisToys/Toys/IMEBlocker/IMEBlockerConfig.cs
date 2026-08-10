@@ -27,6 +27,18 @@ namespace DebrisToys.Toys.IMEBlocker
             }
         }
 
+        public bool IsEnabled
+        {
+            get => field;
+            set
+            {
+                if (field != value)
+                {
+                    field = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public ObservableCollection<TargetAppListCardItemDTO> TargetAppList
         {
             get => field;
@@ -37,23 +49,37 @@ namespace DebrisToys.Toys.IMEBlocker
                     field = value;
                     foreach (var item in field)
                     {
-                        item.OnChangedAcion = () => SaveConfig();
+                        item.OnChangedAcion = () => SaveTargetAppConfig();
                     }
                 }
             }
         } = [];
 
         public readonly string ConfigBasePath = "IMEBlocker";
+        public string IsEnabledConfigPath => Path.Combine(ConfigBasePath, "isEnabled");
         public string TargetAppConfigPath => Path.Combine(ConfigBasePath, "targetApp");
 
         public IMEBlockerConfig()
         {
             RelativePathApplyActionPair = new()
             {
-                {TargetAppConfigPath, ApplyTargetAppConfig}
+                {TargetAppConfigPath, () => ApplyTargetAppConfig().GetAwaiter().GetResult()}
             };
         }
-        public async void ApplyTargetAppConfig()
+
+        private async Task ApplyIsEnabledConfig()
+        {
+            try
+            {
+                string? json = await ToysConfigManager.Current.GetConfig(IsEnabledConfigPath);
+                IsEnabled = JsonSerializer.Deserialize<bool>(json);
+            }
+            catch
+            {
+            }
+        }
+
+        private async Task ApplyTargetAppConfig()
         {
             try
             {
@@ -64,12 +90,19 @@ namespace DebrisToys.Toys.IMEBlocker
             {
             }
         }
-        public override void ApplyConfig()
+        public override async Task ApplyConfig()
         {
-            ApplyTargetAppConfig();
+            await ApplyIsEnabledConfig();
+            await ApplyTargetAppConfig();
         }
 
-        public override void SaveConfig()
+        public void SaveIsEnabledConfig()
+        {
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string json = JsonSerializer.Serialize(IsEnabled, options);
+            ToysConfigManager.Current.SaveConfig(IsEnabledConfigPath, json);
+        }
+        public void SaveTargetAppConfig()
         {
             List<TargetAppListCardItemDTO> targetConfig = [];
             foreach (var item in TargetAppList)
@@ -85,23 +118,14 @@ namespace DebrisToys.Toys.IMEBlocker
             string json = JsonSerializer.Serialize(targetConfig, options);
             ToysConfigManager.Current.SaveConfig(TargetAppConfigPath, json);
         }
+        public override void SaveConfig()
+        {
+            SaveTargetAppConfig();
+        }
 
         public override List<HotKeyInfo> CheckConflicts()
         {
             throw new NotImplementedException();
-        }
-
-        public bool IsEnabled
-        {
-            get => field;
-            set
-            {
-                if (field != value)
-                {
-                    field = value;
-                    OnPropertyChanged();
-                }
-            }
         }
     }
 }
