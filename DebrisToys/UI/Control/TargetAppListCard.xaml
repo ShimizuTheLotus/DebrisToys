@@ -12,7 +12,8 @@
                         <ListView x:Name="PART_MainListView">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <local:TargetAppListCardItem AppName="{Binding AppName}" IsEnabled="{Binding IsEnabled}"/>
+                                    <local:TargetAppListCardItem AppName="{Binding AppName}"
+                                                                 IsEnabled="{Binding IsEnabled, Mode=TwoWay}"/>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>

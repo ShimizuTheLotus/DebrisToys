@@ -18,6 +18,7 @@
                                        RelativePanel.LeftOf="PART_EnableStatusToggleSwitch"
                                        RelativePanel.AlignBottomWithPanel="True" />
                             <ToggleSwitch x:Name="PART_EnableStatusToggleSwitch"
+                                          IsOn="{Binding IsEnabled, Mode=TwoWay}"
                                           Style="{ThemeResource RightAlignedCompactToggleSwitchStyle}"
                                           RelativePanel.AlignTopWithPanel="True"
                                           RelativePanel.AlignRightWithPanel="True"

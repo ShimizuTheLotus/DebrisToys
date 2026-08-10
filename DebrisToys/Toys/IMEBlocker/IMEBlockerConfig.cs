@@ -27,7 +27,21 @@ namespace DebrisToys.Toys.IMEBlocker
             }
         }
 
-        public ObservableCollection<TargetAppListCardItemDTO> TargetAppList = [];
+        public ObservableCollection<TargetAppListCardItemDTO> TargetAppList
+        {
+            get => field;
+            set
+            {
+                if (field != value)
+                {
+                    field = value;
+                    foreach (var item in field)
+                    {
+                        item.OnChangedAcion = () => SaveConfig();
+                    }
+                }
+            }
+        } = [];
 
         public readonly string ConfigBasePath = "IMEBlocker";
         public string TargetAppConfigPath => Path.Combine(ConfigBasePath, "targetApp");
@@ -44,7 +58,7 @@ namespace DebrisToys.Toys.IMEBlocker
             try
             {
                 string? json = await ToysConfigManager.Current.GetConfig(TargetAppConfigPath);
-                var TargetAppList = JsonSerializer.Deserialize<List<TargetAppListCardItemDTO>>(json);
+                TargetAppList = JsonSerializer.Deserialize<ObservableCollection<TargetAppListCardItemDTO>>(json) ?? [];
             }
             catch
             {
