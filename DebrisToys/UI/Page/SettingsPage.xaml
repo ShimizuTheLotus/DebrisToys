@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Page
-    x:Class="DebrisToys.UI.Page.SettingsPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:DebrisToys.UI.Page"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:ui="using:DebrisToys.UI.Control"
-    mc:Ignorable="d">
+<Page x:Class="DebrisToys.UI.Page.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:DebrisToys.UI.Page"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:ui="using:DebrisToys.UI.Control"
+      mc:Ignorable="d">
 
-    <StackPanel>
+    <StackPanel Margin="{ThemeResource ToolPagePadding}">
         <ui:Card x:Uid="Settings_LaunchOnStartup">
             <ui:Card.IconElement>
                 <FontIcon Glyph="&#xEC4A;" />
             </ui:Card.IconElement>
             <ui:Card.RightPartElement>
-                <ToggleSwitch x:Name="Settings_LaunchOnStartup_ToggleSwitch" Toggled="Settings_LaunchOnStartup_ToggleSwitch_Toggled"/>
+                <ToggleSwitch x:Name="Settings_LaunchOnStartup_ToggleSwitch"
+                              Style="{ThemeResource RightAlignedCompactToggleSwitchStyle}"
+                              Toggled="Settings_LaunchOnStartup_ToggleSwitch_Toggled" />
             </ui:Card.RightPartElement>
         </ui:Card>
     </StackPanel>
