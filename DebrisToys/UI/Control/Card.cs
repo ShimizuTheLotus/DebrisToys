@@ -41,6 +41,10 @@ namespace DebrisToys.UI.Control
             var card = d as Card;
             var newValue = e.NewValue as string;
             card?._descriptionTextBlock?.Text = newValue;
+
+            bool isDescriptionEmpty = string.IsNullOrWhiteSpace(card?.Description);
+            card?._descriptionTextBlock?.Visibility = isDescriptionEmpty ? Visibility.Collapsed : Visibility.Visible;
+            card?._textContentStackPanel?.VerticalAlignment = isDescriptionEmpty ? VerticalAlignment.Center : VerticalAlignment.Stretch;
         }
 
         public IconElement? IconElement
@@ -89,6 +93,7 @@ namespace DebrisToys.UI.Control
         }
 
         private Grid? _iconGrid;
+        private StackPanel? _textContentStackPanel;
         private TextBlock? _titleTextBlock;
         private TextBlock? _descriptionTextBlock;
         private Grid? _rightPartGrid;
@@ -106,6 +111,7 @@ namespace DebrisToys.UI.Control
             _titleTextBlock = GetTemplateChild("PART_TitleTextBlock") as TextBlock;
             _descriptionTextBlock = GetTemplateChild("PART_DescriptionTextBlock") as TextBlock;
             _rightPartGrid = GetTemplateChild("PART_RightAlignedContentGrid") as Grid;
+            _textContentStackPanel = GetTemplateChild("PART_TextContentStackPanel") as StackPanel;
 
             if (_iconGrid != null
             && _titleTextBlock != null
@@ -125,6 +131,9 @@ namespace DebrisToys.UI.Control
                 {
                     _rightPartGrid.Children.Add(RightPartElement);
                 }
+                bool isDescriptionEmpty = string.IsNullOrWhiteSpace(_descriptionTextBlock.Text);
+                _descriptionTextBlock.Visibility = isDescriptionEmpty ? Visibility.Collapsed : Visibility.Visible;
+                _textContentStackPanel.VerticalAlignment = isDescriptionEmpty ? VerticalAlignment.Center : VerticalAlignment.Stretch;
             }
         }
     }

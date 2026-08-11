@@ -35,7 +35,7 @@
                                       MaxHeight="{ThemeResource CardIconSize}"
                                       MaxWidth="{ThemeResource CardIconSize}"
                                       Margin="{ThemeResource CardIconGridMargin}" />
-                                <StackPanel>
+                                <StackPanel x:Name="PART_TextContentStackPanel">
                                     <TextBlock x:Name="PART_TitleTextBlock"
                                                FontWeight="{ThemeResource CardTitleFontWeight}"
                                                FontSize="{ThemeResource CardTitleFontSize}"

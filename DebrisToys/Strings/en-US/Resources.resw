@@ -141,4 +141,7 @@
   <data name="Settings_LaunchOnStartup.Title" xml:space="preserve">
     <value>Launch on startup</value>
   </data>
+  <data name="Toys_NoTaskbar_Card_Srartup_Toggle.Title" xml:space="preserve">
+    <value>Auto launch when startup</value>
+  </data>
 </root>

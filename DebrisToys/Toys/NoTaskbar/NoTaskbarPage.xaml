@@ -8,7 +8,7 @@
       xmlns:ui="using:DebrisToys.UI.Control"
       mc:Ignorable="d">
 
-    <StackPanel Margin="{ThemeResource ToolPagePadding}">
+    <StackPanel Margin="{ThemeResource ToolPagePadding}" Spacing="{ThemeResource ToyPageSpacing}">
         <ui:Card x:Uid="Toys_NoTaskbar_Card_Toggle">
             <ui:Card.IconElement>
                 <BitmapIcon UriSource="ms-appx:///Images/Icon/NoTaskBar.png"

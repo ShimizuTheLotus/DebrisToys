@@ -27,20 +27,24 @@
                         RelativePanel.AlignBottomWithPanel="True"
                         Spacing="20"
                         Padding="4">
-                <TextBox x:Name="AddOptionAppNameTextBlock" PlaceholderText="notepad.exe"
+                <TextBox x:Name="AddOptionAppNameTextBlock"
+                         PlaceholderText="notepad.exe"
                          VerticalAlignment="Center" />
                 <Button x:Name="AddAppNameButton"
                         x:Uid="Toys_IMEBlocker_TargetAppListCard_Option_Add"
                         Click="AddAppNameButton_Click" />
             </StackPanel>
-            <AppBarButton x:Name="RemoveAppNameAppBarButton"
-                          LabelPosition="Collapsed"
-                          Icon="Delete"
-                          RelativePanel.AlignTopWithPanel="True"
-                          RelativePanel.AlignRightWithPanel="True"
-                          RelativePanel.AlignBottomWithPanel="True"
-                          Click="RemoveAppNameAppBarButton_Click"
-                          Foreground="{ThemeResource DangerousOptionForegroundDefaultBrush}"/>
+            <Button x:Name="RemoveAppNameAppBarButton"
+                    Style="{ThemeResource SubtleButtonStyle}"
+                    RelativePanel.AlignTopWithPanel="True"
+                    RelativePanel.AlignRightWithPanel="True"
+                    RelativePanel.AlignBottomWithPanel="True"
+                    Click="RemoveAppNameAppBarButton_Click"
+                    Foreground="{ThemeResource DangerousOptionForegroundDefaultBrush}">
+                <Button.Content>
+                    <FontIcon Glyph="&#xE74D;" />
+                </Button.Content>
+            </Button>
         </RelativePanel>
         <ui:TargetAppListCard x:Name="TargetAppListCard"
                               MinHeight="120" />

@@ -49,7 +49,7 @@ namespace DebrisToys
 
         private void AppTitleBar_Loaded(object sender, RoutedEventArgs e)
         {
-            BasePanel.Focus(FocusState.Programmatic);
+            AppTitleBar.Focus(FocusState.Programmatic);
             if (ExtendsContentIntoTitleBar)
             {
                 SetTitleBarRegion();

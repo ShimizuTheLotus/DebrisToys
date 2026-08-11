@@ -11,27 +11,75 @@
     <Window.SystemBackdrop>
         <MicaBackdrop />
     </Window.SystemBackdrop>
-    <Grid>
-        <NavigationView x:Name="NavigationView"
-                        ItemInvoked="NavigationView_ItemInvoked">
-            <Frame x:Name="NavigationFrame" />
-            <NavigationView.MenuItems>
-                <NavigationViewItem x:Name="NoTaskbarItem"
-                                    Content="No Taskbar"
-                                    x:Uid="MainWindow_NavigationView_Item_NoTaskBar.Content">
-                    <NavigationViewItem.Icon>
-                        <BitmapIcon UriSource="ms-appx:///Images/Icon/NoTaskBar.png"
-                                    ShowAsMonochrome="False" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                <NavigationViewItem x:Name="IMEBlockerItem"
-                                    Content="IME Blocker"
-                                    x:Uid="MainWindow_NavigationView_Item_IMEBlocker.Content">
-                    <NavigationViewItem.Icon>
-                        <ImageIcon Source="ms-appx:///Images/Icon/IMEBlocker.svg" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-            </NavigationView.MenuItems>
-        </NavigationView>
-    </Grid>
+
+    <RelativePanel x:Name="BasePanel">
+        <Grid x:Name="AppTitleBar"
+              Height="48"
+              RelativePanel.AlignLeftWithPanel="True"
+              RelativePanel.AlignTopWithPanel="True"
+              RelativePanel.AlignRightWithPanel="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="LeftPaddingColumn"
+                                  Width="0" />
+                <ColumnDefinition x:Name="ContentColumn"
+                                  Width="*" />
+                <ColumnDefinition x:Name="RightPaddingColumn"
+                                  Width="0" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1"
+                        Orientation="Horizontal"
+                        Padding="4 0 0 0">
+                <Button x:Name="NavigationViewPaneButton"
+                        Style="{ThemeResource SubtleButtonStyle}"
+                        VerticalAlignment="Center"
+                        Padding="12 12"
+                        Click="NavigationViewPaneButton_Click">
+                    <FontIcon Glyph="&#xE700;"
+                              FontSize="16" />
+                </Button>
+                <Image x:Name="TitleBarIcon"
+                       Source="ms-appx:///Images/StoreLogo.png"
+                       Grid.Column="1"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Width="16"
+                       Height="16"
+                       Margin="16,0,0,0" />
+                <TextBlock x:Name="TitleBarTextBlock"
+                           Text="DebrisToys"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           Grid.Column="1"
+                           VerticalAlignment="Center"
+                           Margin="16,0,0,0" />
+            </StackPanel>
+        </Grid>
+        <Grid RelativePanel.AlignLeftWithPanel="True"
+              RelativePanel.Below="AppTitleBar"
+              RelativePanel.AlignRightWithPanel="True"
+              RelativePanel.AlignBottomWithPanel="True">
+            <NavigationView x:Name="NavigationView"
+                            ItemInvoked="NavigationView_ItemInvoked"
+                            IsBackButtonVisible="Collapsed"
+                            IsPaneToggleButtonVisible="False">
+                <Frame x:Name="NavigationFrame" />
+                <NavigationView.MenuItems>
+                    <NavigationViewItem x:Name="NoTaskbarItem"
+                                        Content="No Taskbar"
+                                        x:Uid="MainWindow_NavigationView_Item_NoTaskBar.Content">
+                        <NavigationViewItem.Icon>
+                            <BitmapIcon UriSource="ms-appx:///Images/Icon/NoTaskBar.png"
+                                        ShowAsMonochrome="False" />
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                    <NavigationViewItem x:Name="IMEBlockerItem"
+                                        Content="IME Blocker"
+                                        x:Uid="MainWindow_NavigationView_Item_IMEBlocker.Content">
+                        <NavigationViewItem.Icon>
+                            <ImageIcon Source="ms-appx:///Images/Icon/IMEBlocker.svg" />
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                </NavigationView.MenuItems>
+            </NavigationView>
+        </Grid>
+    </RelativePanel>
 </Window>
