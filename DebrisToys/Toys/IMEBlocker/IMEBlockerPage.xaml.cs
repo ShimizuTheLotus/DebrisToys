@@ -29,7 +29,7 @@ namespace DebrisToys.Toys.IMEBlocker
     /// </summary>
     public sealed partial class IMEBlockerPage : Page
     {
-        
+
         public IMEBlockerConfig Config { get; set; } = IMEBlockerConfig.Current;
         public IMEBlocker IMEBlocker { get; set; } = IMEBlocker.Current;
         private void RegisterConfigPropertyChanged()
@@ -80,6 +80,20 @@ namespace DebrisToys.Toys.IMEBlocker
 
         private void AddAppNameButton_Click(object sender, RoutedEventArgs e)
         {
+            AddNewBlockedApp();
+        }
+
+        private void AddOptionAppNameTextBlock_PreviewKeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                e.Handled = true;
+                AddNewBlockedApp();
+            }
+        }
+
+        private void AddNewBlockedApp()
+        {
             if (string.IsNullOrWhiteSpace(AddOptionAppNameTextBlock.Text))
             {
                 return;
@@ -92,10 +106,11 @@ namespace DebrisToys.Toys.IMEBlocker
             AddOptionAppNameTextBlock.Text = string.Empty;
             Config.SaveTargetAppConfig();
         }
+
         private static string NormalizeName(string name)
         {
             name = name.Trim();
-            if (string.IsNullOrWhiteSpace(name))
+            if (!string.IsNullOrWhiteSpace(name))
                 if (name.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
                     return name;
             return name + ".exe";

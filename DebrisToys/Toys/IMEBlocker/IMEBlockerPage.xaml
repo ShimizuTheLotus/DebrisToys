@@ -29,7 +29,9 @@
                         Padding="4">
                 <TextBox x:Name="AddOptionAppNameTextBlock"
                          PlaceholderText="notepad.exe"
-                         VerticalAlignment="Center" />
+                         VerticalAlignment="Center"
+                         AcceptsReturn="False"
+                         PreviewKeyDown="AddOptionAppNameTextBlock_PreviewKeyDown"/>
                 <Button x:Name="AddAppNameButton"
                         x:Uid="Toys_IMEBlocker_TargetAppListCard_Option_Add"
                         Click="AddAppNameButton_Click" />

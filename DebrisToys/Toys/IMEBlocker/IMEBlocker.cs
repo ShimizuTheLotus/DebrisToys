@@ -168,9 +168,9 @@ namespace DebrisToys.Toys.IMEBlocker
             }
         }
 
-        public override void AutoStart()
+        public override async void AutoStart()
         {
-            IMEBlockerConfig.Current.ApplyConfig();
+            await IMEBlockerConfig.Current.ApplyConfig();
             if (IMEBlockerConfig.Current.IsEnabled)
             {
                 IMEBlocker.Current.Start();
