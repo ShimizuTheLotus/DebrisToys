@@ -34,12 +34,12 @@
                         x:Uid="Toys_IMEBlocker_TargetAppListCard_Option_Add"
                         Click="AddAppNameButton_Click" />
             </StackPanel>
-            <Button x:Name="RemoveAppNameAppBarButton"
+            <Button x:Name="RemoveAppNameButton"
                     Style="{ThemeResource SubtleButtonStyle}"
                     RelativePanel.AlignTopWithPanel="True"
                     RelativePanel.AlignRightWithPanel="True"
                     RelativePanel.AlignBottomWithPanel="True"
-                    Click="RemoveAppNameAppBarButton_Click"
+                    Click="RemoveAppNameButton_Click"
                     Foreground="{ThemeResource DangerousOptionForegroundDefaultBrush}">
                 <Button.Content>
                     <FontIcon Glyph="&#xE74D;" />

@@ -101,9 +101,10 @@ namespace DebrisToys.Toys.IMEBlocker
             return name + ".exe";
         }
 
-        private void RemoveAppNameAppBarButton_Click(object sender, RoutedEventArgs e)
+        private void RemoveAppNameButton_Click(object sender, RoutedEventArgs e)
         {
             TargetAppListCard.RemoveSelection();
+            Config.SaveTargetAppConfig();
         }
     }
 }
