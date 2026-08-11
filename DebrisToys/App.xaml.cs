@@ -43,8 +43,9 @@ namespace DebrisToys
         public App()
         {
             InitializeComponent();
-            AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
         }
+
+
 
         private void CurrentDomain_ProcessExit(object? sender, EventArgs e)
         {
@@ -59,6 +60,12 @@ namespace DebrisToys
         {
             MainWindow = new MainWindow();
             MainWindow.Activate();
+
+            var activatedArgs = Microsoft.Windows.AppLifecycle.AppInstance.GetCurrent().GetActivatedEventArgs();
+            if (activatedArgs.Kind == Microsoft.Windows.AppLifecycle.ExtendedActivationKind.StartupTask)
+            {
+                // Is auto startup
+            }
 
             ToysConfigManager.Current.Initialize();
         }

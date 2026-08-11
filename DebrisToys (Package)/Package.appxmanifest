@@ -45,7 +45,7 @@
         <uap:SplashScreen Image="Images\SplashScreen.png" />
       </uap:VisualElements>
 		<Extensions>
-			<uap5:Extension Category="windows.startupTask" EntryPoint="DebrisToys.App" Executable="DebrisToys.exe">
+			<uap5:Extension Category="windows.startupTask">
 				<uap5:StartupTask DisplayName="DebrisToys" Enabled="true" TaskId="DebrisToys"/>
 			</uap5:Extension>
 		</Extensions>

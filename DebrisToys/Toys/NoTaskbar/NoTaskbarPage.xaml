@@ -20,5 +20,15 @@
                               Toggled="TaskbarToggleSwitch_Toggled" />
             </ui:Card.RightPartElement>
         </ui:Card>
+        <ui:Card x:Uid="Toys_NoTaskbar_Card_Srartup_Toggle">
+            <ui:Card.IconElement>
+                <FontIcon Glyph="&#xEC4A;" />
+            </ui:Card.IconElement>
+            <ui:Card.RightPartElement>
+                <ToggleSwitch x:Name="TaskbarToyStartUpToggleSwitch"
+                              Style="{ThemeResource RightAlignedCompactToggleSwitchStyle}"
+                              Toggled="TaskbarToyStartUpToggleSwitch_Toggled" />
+            </ui:Card.RightPartElement>
+        </ui:Card>
     </StackPanel>
 </Page>

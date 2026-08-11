@@ -52,10 +52,23 @@ namespace DebrisToys.Toys.NoTaskbar
         public override async void AutoStart()
         {
             await NoTaskbarConfig.Current.ApplyConfig();
-            if (NoTaskbarConfig.Current.IsEnabled)
+
+            if (NoTaskbarConfig.Current.IsStartupEnabled)
             {
                 TaskbarHideToy.Current.HideTaskbar();
+                if (!NoTaskbarConfig.Current.IsEnabled)
+                {
+                    NoTaskbarConfig.Current.IsEnabled = true;
+                }
             }
+            else
+            {
+                if (NoTaskbarConfig.Current.IsEnabled)
+                {
+                    NoTaskbarConfig.Current.IsEnabled = false;
+                }
+            }
+
         }
 
         public override void RecoverStatus()    

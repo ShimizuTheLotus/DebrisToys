@@ -36,9 +36,23 @@ namespace DebrisToys.Toys.NoTaskbar
                 }
             }
         } = false;
+        public bool IsStartupEnabled
+        {
+            get => field;
+            set
+            {
+                if (field != value)
+                {
+                    field = value;
+                    OnPropertyChanged();
+                    SaveIsEnabledConfig();
+                }
+            }
+        }
 
         public readonly string ConfigBasePath = "NoTaskbar";
         public string IsEnabledConfigPath => System.IO.Path.Combine(ConfigBasePath, "isEnabled");
+        public string IsStartupEnabledConfigPath => System.IO.Path.Combine(ConfigBasePath, "isStartupEnabled");
 
         private async Task ApplyIsEnabledConfig()
         {
@@ -61,6 +75,12 @@ namespace DebrisToys.Toys.NoTaskbar
         {
             var options = new JsonSerializerOptions { WriteIndented = true };
             string json = JsonSerializer.Serialize(IsEnabled, options);
+            ToysConfigManager.Current.SaveConfig(IsEnabledConfigPath, json);
+        }
+        public void SaveIsStartupEnabledConfig()
+        {
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string json = JsonSerializer.Serialize(IsStartupEnabled, options);
             ToysConfigManager.Current.SaveConfig(IsEnabledConfigPath, json);
         }
         public override void SaveConfig()

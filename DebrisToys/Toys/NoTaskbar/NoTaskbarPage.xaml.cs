@@ -98,5 +98,17 @@ namespace DebrisToys.Toys.NoTaskbar
                 }
             }
         }
+
+        private void TaskbarToyStartUpToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            if (sender is ToggleSwitch toggleSwitch)
+            {
+                bool isOn = toggleSwitch.IsOn;
+                if (Config.IsStartupEnabled != isOn)
+                {
+                    Config.IsStartupEnabled = isOn;
+                }
+            }
+        }
     }
 }
