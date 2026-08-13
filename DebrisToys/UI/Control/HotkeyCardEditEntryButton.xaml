@@ -15,9 +15,12 @@
                             <Grid>
                                 <StackPanel x:Name="PART_HotkeyNotEmptyPresenter"
                                             Orientation="Horizontal">
-                                    <shkui:KeyBlockPanel x:Name="PART_KeyBlockPresenter"
-                                                         IsHitTestVisible="False" />
-                                    <FontIcon Glyph="&#xE70F;" />
+                                    <Viewbox Height="32">
+                                        <shkui:KeyBlockPanel x:Name="PART_KeyBlockPresenter"
+                                                             IsHitTestVisible="False" />
+                                    </Viewbox>
+                                    <FontIcon Glyph="&#xE70F;"
+                                              FontSize="14" />
                                 </StackPanel>
                                 <StackPanel x:Name="PART_HotkeyEmptyPresenter"
                                             Orientation="Horizontal">

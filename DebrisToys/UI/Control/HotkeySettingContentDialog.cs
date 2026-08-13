@@ -47,6 +47,7 @@ namespace DebrisToys.UI.Control
             {
                 HotKeyInfo.AddKeyAndNotify(key);
             }
+            HotKeyManager.Current.AddOrOverwriteHotKey(HotKeyInfo);
             HotKeyManager.Current.SaveHotkeyConfig();
         }
     }
