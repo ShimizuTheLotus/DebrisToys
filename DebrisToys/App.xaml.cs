@@ -48,6 +48,8 @@ namespace DebrisToys
         {
             InitializeComponent();
             AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
+
+            SetUpTrayIcon();
         }
 
         private void CurrentDomain_ProcessExit(object? sender, EventArgs e)
@@ -63,13 +65,13 @@ namespace DebrisToys
         protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             MainWindow = new MainWindow();
-            MainWindow.Closed += MainWindow_Closed;
             MainWindow.Activate();
 
             var activatedArgs = Microsoft.Windows.AppLifecycle.AppInstance.GetCurrent().GetActivatedEventArgs();
             if (activatedArgs.Kind == Microsoft.Windows.AppLifecycle.ExtendedActivationKind.StartupTask)
             {
                 // Is auto startup
+                MainWindow.AppWindow.Hide();
             }
 
             HotKeyManager.Current.HotkeyConfigPath = hotkeyConfigPath;
@@ -78,14 +80,9 @@ namespace DebrisToys
             ToysConfigManager.Current.Initialize();
         }
 
-        private void MainWindow_Closed(object sender, WindowEventArgs args)
-        {
-            RequestExitApp();
-        }
-
         private async void SetUpTrayIcon()
         {
-            Uri fileUri = new("ms-appx:///Images/Ico/ico.ico");
+            Uri fileUri = new("ms-appx:///Images/Icon/ico.ico");
             StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(fileUri);
 
             string iconPath = file.Path;
