@@ -6,6 +6,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using ShimizuToolkit.HotkeyWinUI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,6 +25,7 @@ namespace DebrisToys.Toys.NoTaskbar
     /// </summary>
     public sealed partial class NoTaskbarPage : Page
     {
+        private HotKeyInfo HotKeyInfoTest = new();
         public NoTaskbarConfig Config { get; set; } = new();
 
         private void RegisterConfigPropertyChanged()
@@ -74,6 +76,14 @@ namespace DebrisToys.Toys.NoTaskbar
                 ToysConfigManager.Current.AddToyConfig(Config);
             }
             UpdateUIFromConfig();
+            HotKeyInfoTest.SetHotKey(new()
+            {
+                Windows.System.VirtualKey.Shift,
+                Windows.System.VirtualKey.Control,
+                Windows.System.VirtualKey.A
+            });
+
+            TaskbarToggleSwitchHotkeyEntry.HotkeyInfo = HotKeyInfoTest;
         }
 
         public void UpdateUIFromConfig()

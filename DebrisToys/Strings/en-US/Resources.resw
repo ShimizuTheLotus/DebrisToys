@@ -144,4 +144,16 @@
   <data name="Toys_NoTaskbar_Card_Srartup_Toggle.Title" xml:space="preserve">
     <value>Auto launch when startup</value>
   </data>
+  <data name="Code.CS.Global.HotkeySettingContentDialog.Title" xml:space="preserve">
+    <value>Activation shortcut</value>
+  </data>
+  <data name="Code.CS.Global.HotkeySettingContentDialog.SecondaryButtonText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Code.CS.Global.HotkeySettingContentDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="DebrisToys_UI_Control_HotkeyCardEditEntryButton_PART_HotkeyEmptyPresenter_PlaceHolderText.Text" xml:space="preserve">
+    <value>Create shortcut</value>
+  </data>
 </root>

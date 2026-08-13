@@ -6,6 +6,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:ui="using:DebrisToys.UI.Control"
+      xmlns:shkui="using:ShimizuToolkit.HotkeyWinUI.Controls"
       mc:Ignorable="d">
 
     <StackPanel Margin="{ThemeResource ToolPagePadding}" Spacing="{ThemeResource ToyPageSpacing}">
@@ -18,6 +19,11 @@
                 <ToggleSwitch x:Name="TaskbarToggleSwitch"
                               Style="{ThemeResource RightAlignedCompactToggleSwitchStyle}"
                               Toggled="TaskbarToggleSwitch_Toggled" />
+            </ui:Card.RightPartElement>
+        </ui:Card>
+        <ui:Card Title="Hotkeytest">
+            <ui:Card.RightPartElement>
+                <ui:HotkeyCardEditEntryButton x:Name="TaskbarToggleSwitchHotkeyEntry" />
             </ui:Card.RightPartElement>
         </ui:Card>
         <ui:Card x:Uid="Toys_NoTaskbar_Card_Srartup_Toggle">

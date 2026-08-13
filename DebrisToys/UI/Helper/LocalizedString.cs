@@ -1,0 +1,40 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DebrisToys.Global.Helper
+{
+    public static class LocalizedString
+    {
+        public static string GetLocalizedString(string key)
+        {
+            try
+            {
+                var resourceLoader = new Microsoft.Windows.ApplicationModel.Resources.ResourceLoader();
+                return resourceLoader.GetString(key.Replace(".", "/"));
+            }
+            catch
+            {
+                return "{Resource Load Failed}";
+            }
+        }
+
+        /// <summary>
+        /// Replace placeholders to values.
+        /// Use like s = s.FormatLocalizedStringWithParameters(), not s.FormatLocalizedStringWithParameters(), which can't change its value.
+        /// </summary>
+        /// <param name="originalString">Input string</param>
+        /// <param name="parameters">Placeholder and parameters.</param>
+        /// <returns></returns>
+        public static string FormatLocalizedStringWithParameters(this string originalString, Dictionary<string, object> parameters)
+        {
+            foreach (var parameter in parameters)
+            {
+                originalString = originalString.Replace($"{{{parameter.Key}}}", parameter.Value.ToString());
+            }
+            return originalString;
+        }
+    }
+}
