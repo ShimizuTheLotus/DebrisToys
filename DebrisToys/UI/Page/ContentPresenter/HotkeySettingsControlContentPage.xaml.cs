@@ -38,5 +38,10 @@ namespace DebrisToys.UI.Page.ContentPresenter
             this.Loaded -= HotkeySettingsControlContentPage_Loaded;
             _keyCaptureControl.IsCapturing = true;
         }
+
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            _keyCaptureControl.SetKeys(new());
+        }
     }
 }

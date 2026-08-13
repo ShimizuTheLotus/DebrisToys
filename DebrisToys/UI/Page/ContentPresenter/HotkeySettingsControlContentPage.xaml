@@ -9,8 +9,23 @@
       mc:Ignorable="d">
 
     <Grid>
-        <StackPanel>
-            <shkui:KeyCaptureControl x:Name="_keyCaptureControl" MinHeight="64"/>
+        <StackPanel Spacing="8">
+            <shkui:KeyCaptureControl x:Name="_keyCaptureControl"
+                                     MinHeight="64" />
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <HyperlinkButton x:Name="ClearButton" Click="ClearButton_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Glyph="&#xE894;"
+                                  FontSize="12"
+                                  Margin="4 3 4 0"
+                                  FontWeight="Bold"
+                                  VerticalAlignment="Center" />
+                        <TextBlock x:Uid="DebrisToys_UI_Control_HotkeySettingsControlContentPage_ClearButton"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+                </HyperlinkButton>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>

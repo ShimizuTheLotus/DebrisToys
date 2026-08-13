@@ -156,4 +156,7 @@
   <data name="DebrisToys_UI_Control_HotkeyCardEditEntryButton_PART_HotkeyEmptyPresenter_PlaceHolderText.Text" xml:space="preserve">
     <value>创建快捷键</value>
   </data>
+  <data name="DebrisToys_UI_Control_HotkeySettingsControlContentPage_ClearButton.Text" xml:space="preserve">
+    <value>清除</value>
+  </data>
 </root>

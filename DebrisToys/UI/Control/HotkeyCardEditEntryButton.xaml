@@ -20,12 +20,17 @@
                                                              IsHitTestVisible="False" />
                                     </Viewbox>
                                     <FontIcon Glyph="&#xE70F;"
-                                              FontSize="14" />
+                                              FontSize="14"
+                                              Margin="4 0 0 0" />
                                 </StackPanel>
                                 <StackPanel x:Name="PART_HotkeyEmptyPresenter"
                                             Orientation="Horizontal">
-                                    <TextBlock x:Uid="DebrisToys_UI_Control_HotkeyCardEditEntryButton_PART_HotkeyEmptyPresenter_PlaceHolderText" />
-                                    <FontIcon Glyph="&#xE710;" />
+                                    <TextBlock x:Uid="DebrisToys_UI_Control_HotkeyCardEditEntryButton_PART_HotkeyEmptyPresenter_PlaceHolderText"
+                                               VerticalAlignment="Center" />
+                                    <FontIcon Glyph="&#xE710;"
+                                              Margin="4 3 0 0"
+                                              FontSize="18"
+                                              VerticalAlignment="Center" />
                                 </StackPanel>
                             </Grid>
                         </Button>
