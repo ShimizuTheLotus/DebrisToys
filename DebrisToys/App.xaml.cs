@@ -9,12 +9,15 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
+using Microsoft.Windows.AppLifecycle;
 using ShimizuToolkit.HotkeyWinUI;
 using ShimizuToolkit.TrayIconWinUI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -47,16 +50,15 @@ namespace DebrisToys
         public App()
         {
             InitializeComponent();
-            AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
 
-            SetUpTrayIcon();
+            AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
         }
 
         private void CurrentDomain_ProcessExit(object? sender, EventArgs e)
         {
-            ToysConfigManager.Current.RecoverStatus();
-            HotKeyManager.Current.Dispose();
+            //ShimizuToolkit.TrayIconWinUI.TrayIconManager.Current.Dispose();
         }
+
 
         /// <summary>
         /// Invoked when the application is launched.
@@ -66,6 +68,7 @@ namespace DebrisToys
         {
             MainWindow = new MainWindow();
             MainWindow.Activate();
+            MainWindow.Closed += MainWindow_Closed;
 
             var activatedArgs = Microsoft.Windows.AppLifecycle.AppInstance.GetCurrent().GetActivatedEventArgs();
             if (activatedArgs.Kind == Microsoft.Windows.AppLifecycle.ExtendedActivationKind.StartupTask)
@@ -78,6 +81,12 @@ namespace DebrisToys
             await HotKeyManager.Current.LoadHotkeyConfig();
 
             ToysConfigManager.Current.Initialize();
+            SetUpTrayIcon();
+        }
+
+        private void MainWindow_Closed(object sender, WindowEventArgs args)
+        {
+            CleanOnExit();
         }
 
         private async void SetUpTrayIcon()
@@ -124,8 +133,16 @@ namespace DebrisToys
             TrayWindow.Activate();
         }
 
+        public static void CleanOnExit()
+        {
+            ToysConfigManager.Current.RecoverStatus();
+            HotKeyManager.Current.Dispose();
+            ShimizuToolkit.TrayIconWinUI.TrayIconManager.Current.Dispose();
+        }
+
         public static void RequestExitApp()
         {
+            MainWindow?.Close();
             App.Current.Exit();
         }
     }

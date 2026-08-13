@@ -63,7 +63,8 @@ public sealed partial class TrayWindow : Microsoft.UI.Xaml.Window
     private void SettingsButton_Click(object sender, RoutedEventArgs e)
     {
         App.MainWindow?.AppWindow.Show();
-        Global.Helper.WindowInteraction.SetForegroundWindowAndSetFocus(App.MainWindow);
+        App.MainWindow?.Activate();
+        //Global.Helper.WindowInteraction.SetForegroundWindowAndSetFocus(App.MainWindow);
         this.Close();
     }
 }

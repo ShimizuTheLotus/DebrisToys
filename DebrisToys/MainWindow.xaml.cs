@@ -37,6 +37,13 @@ namespace DebrisToys
             AppWindow.TitleBar.PreferredHeightOption = TitleBarHeightOption.Tall;
             AppTitleBar.Loaded += AppTitleBar_Loaded;
             AppTitleBar.SizeChanged += AppTitleBar_SizeChanged;
+            AppWindow.Closing += AppWindow_Closing;
+        }
+
+        private void AppWindow_Closing(Microsoft.UI.Windowing.AppWindow sender, AppWindowClosingEventArgs args)
+        {
+            args.Cancel = true;
+            AppWindow.Hide();
         }
 
         private void AppTitleBar_SizeChanged(object sender, SizeChangedEventArgs e)
