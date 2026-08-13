@@ -9,12 +9,14 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
+using ShimizuToolkit.HotkeyWinUI;
 using ShimizuToolkit.TrayIconWinUI;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -36,6 +38,8 @@ namespace DebrisToys
         public static Window? MainWindow;
         public static Window? TrayWindow;
 
+        private readonly string hotkeyConfigPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config", "Hotkeys");
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -43,22 +47,23 @@ namespace DebrisToys
         public App()
         {
             InitializeComponent();
+            AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
         }
-
-
 
         private void CurrentDomain_ProcessExit(object? sender, EventArgs e)
         {
             ToysConfigManager.Current.RecoverStatus();
+            HotKeyManager.Current.Dispose();
         }
 
         /// <summary>
         /// Invoked when the application is launched.
         /// </summary>
         /// <param name="args">Details about the launch request and process.</param>
-        protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
+        protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             MainWindow = new MainWindow();
+            MainWindow.Closed += MainWindow_Closed;
             MainWindow.Activate();
 
             var activatedArgs = Microsoft.Windows.AppLifecycle.AppInstance.GetCurrent().GetActivatedEventArgs();
@@ -67,7 +72,15 @@ namespace DebrisToys
                 // Is auto startup
             }
 
+            HotKeyManager.Current.HotkeyConfigPath = hotkeyConfigPath;
+            await HotKeyManager.Current.LoadHotkeyConfig();
+
             ToysConfigManager.Current.Initialize();
+        }
+
+        private void MainWindow_Closed(object sender, WindowEventArgs args)
+        {
+            RequestExitApp();
         }
 
         private async void SetUpTrayIcon()
@@ -118,6 +131,5 @@ namespace DebrisToys
         {
             App.Current.Exit();
         }
-
     }
 }

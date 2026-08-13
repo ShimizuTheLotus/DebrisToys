@@ -1,4 +1,5 @@
 ﻿using DebrisToys.ToysManager.Base;
+using ShimizuToolkit.HotkeyWinUI;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,11 @@ namespace DebrisToys.Toys.NoTaskbar
 {
     public class TaskbarHideToy : ToyBase
     {
+        private const string _hotkey_Toggle = $"{nameof(TaskbarHideToy)}.Toggle";
+        public TaskbarHideToy()
+        {
+            HotkeyNameList = [_hotkey_Toggle];
+        }
         public static TaskbarHideToy Current => LazyInitializer.Instance;
         private static class LazyInitializer
         {
@@ -39,6 +45,19 @@ namespace DebrisToys.Toys.NoTaskbar
             }
         }
 
+        private void ToggleTaskBar()
+        {
+            NoTaskbarConfig.Current.IsEnabled = !NoTaskbarConfig.Current.IsEnabled;
+            if (NoTaskbarConfig.Current.IsEnabled)
+            {
+                HideTaskbar();
+            }
+            else
+            {
+                ShowTaskbar();
+            }
+        }
+
         private async void StartHideBarLoop()
         {
             while (IsHideLoop)
@@ -51,6 +70,9 @@ namespace DebrisToys.Toys.NoTaskbar
 
         public override async void AutoStart()
         {
+            base.AutoStart();
+            ApplyActions();
+
             await NoTaskbarConfig.Current.ApplyConfig();
 
             if (NoTaskbarConfig.Current.IsStartupEnabled)
@@ -68,12 +90,17 @@ namespace DebrisToys.Toys.NoTaskbar
                     NoTaskbarConfig.Current.IsEnabled = false;
                 }
             }
-
         }
 
-        public override void RecoverStatus()    
+        public override void RecoverStatus()
         {
             TaskbarHideToy.Current.ShowTaskbar();
+        }
+
+        public override void ApplyActions()
+        {
+            HotKeyInfo hotkey = HotKeyManager.Current.GetHotKey(_hotkey_Toggle);
+            hotkey.ActionCallback = () => ToggleTaskBar();
         }
     }
 }

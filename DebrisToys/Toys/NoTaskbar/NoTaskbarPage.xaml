@@ -23,7 +23,8 @@
         </ui:Card>
         <ui:Card Title="Hotkeytest">
             <ui:Card.RightPartElement>
-                <ui:HotkeyCardEditEntryButton x:Name="TaskbarToggleSwitchHotkeyEntry" />
+                <ui:HotkeyCardEditEntryButton x:Name="TaskbarToggleSwitchHotkeyEntry"
+                                              HotkeyIdentifier="TaskbarHideToy.Toggle"/>
             </ui:Card.RightPartElement>
         </ui:Card>
         <ui:Card x:Uid="Toys_NoTaskbar_Card_Srartup_Toggle">

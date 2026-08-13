@@ -4,6 +4,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Documents;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
+using ShimizuToolkit.HotkeyWinUI;
 using ShimizuToolkit.HotkeyWinUI.Controls;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,11 @@ namespace DebrisToys.UI.Control
             }
         } = new();
 
+        public string HotkeyIdentifier
+        {
+            get; set;
+        } = string.Empty;
+
         private Button? _baseButton;
         private StackPanel? _hotkeyNotEmptyPresenter;
         private KeyBlockPanel? _keyBlockPanel;
@@ -52,6 +58,10 @@ namespace DebrisToys.UI.Control
             _keyBlockPanel = GetTemplateChild("PART_KeyBlockPresenter") as KeyBlockPanel;
             _hotkeyEmptyPresenter = GetTemplateChild("PART_HotkeyEmptyPresenter") as StackPanel;
             _baseButton?.Click += _baseButton_Click;
+            if (!string.IsNullOrWhiteSpace(HotkeyIdentifier))
+            {
+                HotkeyInfo = HotKeyManager.Current.GetHotKey(HotkeyIdentifier);
+            }
             UpdateUI();
         }
 

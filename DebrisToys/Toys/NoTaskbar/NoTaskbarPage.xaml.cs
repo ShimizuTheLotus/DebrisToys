@@ -25,7 +25,6 @@ namespace DebrisToys.Toys.NoTaskbar
     /// </summary>
     public sealed partial class NoTaskbarPage : Page
     {
-        private HotKeyInfo HotKeyInfoTest = new();
         public NoTaskbarConfig Config { get; set; } = new();
 
         private void RegisterConfigPropertyChanged()
@@ -76,14 +75,6 @@ namespace DebrisToys.Toys.NoTaskbar
                 ToysConfigManager.Current.AddToyConfig(Config);
             }
             UpdateUIFromConfig();
-            HotKeyInfoTest.SetHotKey(new()
-            {
-                Windows.System.VirtualKey.Shift,
-                Windows.System.VirtualKey.Control,
-                Windows.System.VirtualKey.A
-            });
-
-            TaskbarToggleSwitchHotkeyEntry.HotkeyInfo = HotKeyInfoTest;
         }
 
         public void UpdateUIFromConfig()

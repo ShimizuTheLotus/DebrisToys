@@ -170,6 +170,7 @@ namespace DebrisToys.Toys.IMEBlocker
 
         public override async void AutoStart()
         {
+            base.AutoStart();
             await IMEBlockerConfig.Current.ApplyConfig();
             if (IMEBlockerConfig.Current.IsEnabled)
             {
@@ -180,6 +181,11 @@ namespace DebrisToys.Toys.IMEBlocker
         public override void RecoverStatus()
         {
             IMEBlocker.Current.Stop();
+        }
+
+        public override void ApplyActions()
+        {
+            
         }
     }
 }
