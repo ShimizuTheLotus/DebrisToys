@@ -38,6 +38,7 @@ namespace DebrisToys.Toys.IMEBlocker
                 {
                     field = value;
                     OnPropertyChanged();
+                    SaveIsEnabledConfig();
                 }
             }
         }
