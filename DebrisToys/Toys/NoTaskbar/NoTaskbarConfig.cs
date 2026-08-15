@@ -1,4 +1,5 @@
-﻿using DebrisToys.ToysManager;
+﻿using DebrisToys.Global.Helper;
+using DebrisToys.ToysManager;
 using DebrisToys.ToysManager.Base;
 using ShimizuToolkit.HotkeyWinUI;
 using System;
@@ -7,6 +8,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DebrisToys.Toys.NoTaskbar
@@ -45,7 +47,7 @@ namespace DebrisToys.Toys.NoTaskbar
                 {
                     field = value;
                     OnPropertyChanged();
-                    SaveIsEnabledConfig();
+                    SaveIsStartupEnabledConfig();
                 }
             }
         }
@@ -59,7 +61,27 @@ namespace DebrisToys.Toys.NoTaskbar
             try
             {
                 string? json = await ToysConfigManager.Current.GetConfig(IsEnabledConfigPath);
-                IsEnabled = JsonSerializer.Deserialize<bool>(json);
+                var options = new JsonSerializerOptions
+                {
+                    TypeInfoResolver = DebrisToys.Global.Helper.AppJsonContext.Default
+                };
+                IsEnabled = JsonSerializer.Deserialize<bool>(json, options);
+            }
+            catch
+            {
+            }
+        }
+
+        private async Task ApplyIsStartupEnabledConfig()
+        {
+            try
+            {
+                string? json = await ToysConfigManager.Current.GetConfig(IsStartupEnabledConfigPath);
+                var options = new JsonSerializerOptions
+                {
+                    TypeInfoResolver = DebrisToys.Global.Helper.AppJsonContext.Default
+                };
+                IsStartupEnabled = JsonSerializer.Deserialize<bool>(json, options);
             }
             catch
             {
@@ -69,19 +91,21 @@ namespace DebrisToys.Toys.NoTaskbar
         public override async Task ApplyConfig()
         {
             await ApplyIsEnabledConfig();
+            await ApplyIsEnabledConfig();
+            await ApplyIsStartupEnabledConfig();
         }
 
         public void SaveIsEnabledConfig()
         {
             var options = new JsonSerializerOptions { WriteIndented = true };
-            string json = JsonSerializer.Serialize(IsEnabled, options);
+            string json = JsonSerializer.Serialize(IsEnabled, AppJsonContext.Default.Boolean);
             ToysConfigManager.Current.SaveConfig(IsEnabledConfigPath, json);
         }
         public void SaveIsStartupEnabledConfig()
         {
             var options = new JsonSerializerOptions { WriteIndented = true };
-            string json = JsonSerializer.Serialize(IsStartupEnabled, options);
-            ToysConfigManager.Current.SaveConfig(IsEnabledConfigPath, json);
+            string json = JsonSerializer.Serialize(IsStartupEnabled, AppJsonContext.Default.Boolean);
+            ToysConfigManager.Current.SaveConfig(IsStartupEnabledConfigPath, json);
         }
         public override void SaveConfig()
         {

@@ -52,6 +52,14 @@ namespace DebrisToys
             InitializeComponent();
 
             AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
+            this.UnhandledException += App_UnhandledException;
+        }
+
+        private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
+        {
+            e.Handled = true;
+            Debug.Write(e.Exception + ": ");
+            Debug.WriteLine(e.Message);
         }
 
         private void CurrentDomain_ProcessExit(object? sender, EventArgs e)

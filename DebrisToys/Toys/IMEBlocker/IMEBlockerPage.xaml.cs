@@ -65,6 +65,13 @@ namespace DebrisToys.Toys.IMEBlocker
             this.Unloaded += IMEBlockerPage_Unloaded;
             RegisterConfigPropertyChanged();
             TargetAppListCard.SetValue(Config.TargetAppList);
+
+            UpdateUIFromConfig();
+        }
+
+        public void UpdateUIFromConfig()
+        {
+            IMEBlockerToggleSwitch.IsOn = Config.IsEnabled;
         }
 
         private void IMEBlockerPage_Unloaded(object sender, RoutedEventArgs e)

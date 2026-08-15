@@ -86,10 +86,10 @@ namespace DebrisToys.ToysManager
             {
                 try
                 {
-                    var text = await File.ReadAllTextAsync(System.IO.Path.Combine(BaseConfigPath, fullPath));
+                    var text = await File.ReadAllTextAsync(fullPath);
                     return text;
                 }
-                catch
+                catch(Exception ex)
                 {
                     return string.Empty;
                 }

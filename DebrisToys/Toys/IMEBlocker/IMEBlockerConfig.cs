@@ -1,4 +1,5 @@
-﻿using DebrisToys.ToysManager;
+﻿using DebrisToys.Global.Helper;
+using DebrisToys.ToysManager;
 using DebrisToys.ToysManager.Base;
 using DebrisToys.UI.Control;
 using ShimizuToolkit.HotkeyWinUI;
@@ -11,6 +12,7 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DebrisToys.Toys.IMEBlocker
@@ -39,6 +41,7 @@ namespace DebrisToys.Toys.IMEBlocker
                 }
             }
         }
+
         public ObservableCollection<TargetAppListCardItemDTO> TargetAppList
         {
             get => field;
@@ -72,7 +75,11 @@ namespace DebrisToys.Toys.IMEBlocker
             try
             {
                 string? json = await ToysConfigManager.Current.GetConfig(IsEnabledConfigPath);
-                IsEnabled = JsonSerializer.Deserialize<bool>(json);
+                var options = new JsonSerializerOptions
+                {
+                    TypeInfoResolver = DebrisToys.Global.Helper.AppJsonContext.Default
+                };
+                IsEnabled = JsonSerializer.Deserialize<bool>(json, options);
             }
             catch
             {
@@ -84,7 +91,11 @@ namespace DebrisToys.Toys.IMEBlocker
             try
             {
                 string? json = await ToysConfigManager.Current.GetConfig(TargetAppConfigPath);
-                TargetAppList = JsonSerializer.Deserialize<ObservableCollection<TargetAppListCardItemDTO>>(json) ?? [];
+                var options = new JsonSerializerOptions
+                {
+                    TypeInfoResolver = DebrisToys.Global.Helper.AppJsonContext.Default
+                };
+                TargetAppList = JsonSerializer.Deserialize<ObservableCollection<TargetAppListCardItemDTO>>(json, options) ?? [];
             }
             catch
             {
@@ -98,8 +109,7 @@ namespace DebrisToys.Toys.IMEBlocker
 
         public void SaveIsEnabledConfig()
         {
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            string json = JsonSerializer.Serialize(IsEnabled, options);
+            string json = JsonSerializer.Serialize(IsEnabled, AppJsonContext.Default.Boolean);
             ToysConfigManager.Current.SaveConfig(IsEnabledConfigPath, json);
         }
         public void SaveTargetAppConfig()
@@ -114,8 +124,7 @@ namespace DebrisToys.Toys.IMEBlocker
                 });
             }
 
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            string json = JsonSerializer.Serialize(targetConfig, options);
+            string json = JsonSerializer.Serialize(targetConfig, AppJsonContext.Default.ListTargetAppListCardItemDTO);
             ToysConfigManager.Current.SaveConfig(TargetAppConfigPath, json);
         }
         public override void SaveConfig()

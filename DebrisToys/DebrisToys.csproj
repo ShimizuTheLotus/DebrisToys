@@ -11,6 +11,8 @@
 		<DefineConstants>$(DefineConstants);DISABLE_XAML_GENERATED_MAIN</DefineConstants>
 		<WinUISDKReferences>false</WinUISDKReferences>
 		<Nullable>enable</Nullable>
+		<JsonSerializerIsReflectionEnabledByDefault>false</JsonSerializerIsReflectionEnabledByDefault>
+		<EnableConfigurationBindingGenerator>true</EnableConfigurationBindingGenerator>
 	</PropertyGroup>
 	<ItemGroup>
 	  <None Remove="Themes\Brush.xaml" />

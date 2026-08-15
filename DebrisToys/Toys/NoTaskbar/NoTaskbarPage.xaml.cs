@@ -36,7 +36,6 @@ namespace DebrisToys.Toys.NoTaskbar
             NoTaskbarConfig.PropertyChanged -= NoTaskbarConfig_PropertyChanged;
         }
 
-
         private void NoTaskbarConfig_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(NoTaskbarConfig.IsEnabled))
@@ -64,7 +63,6 @@ namespace DebrisToys.Toys.NoTaskbar
             this.Unloaded += NoTaskbarPage_Unloaded;
             RegisterConfigPropertyChanged();
 
-
             var config = ToysConfigManager.Current.GetToyConfig<NoTaskbarConfig>();
             if (config != null)
             {
@@ -80,6 +78,7 @@ namespace DebrisToys.Toys.NoTaskbar
         public void UpdateUIFromConfig()
         {
             TaskbarToggleSwitch.IsOn = Config.IsEnabled;
+            TaskbarToyStartUpToggleSwitch.IsOn = Config.IsStartupEnabled;
         }
 
         private void NoTaskbarPage_Unloaded(object sender, RoutedEventArgs e)
