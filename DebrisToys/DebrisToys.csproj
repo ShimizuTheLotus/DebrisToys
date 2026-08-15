@@ -16,6 +16,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <None Remove="Themes\Brush.xaml" />
+	  <None Remove="Themes\Title.xaml" />
 	  <None Remove="Themes\TransparentFrameNavigationView.xaml" />
 	  <None Remove="Toys\IMEBlocker\IMEBlockerPage.xaml" />
 	  <None Remove="UI\Control\Card.xaml" />
@@ -73,6 +74,9 @@
 	  <None Update="Themes\RightAlignedCompactToggleSwitchStyle.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </None>
+	  <Page Update="Themes\Title.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
 	  <Page Update="UI\Page\OpenSourceNoticePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </Page>

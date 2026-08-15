@@ -47,5 +47,10 @@ namespace DebrisToys.UI.Page
                 DebrisToys.Settings.StartupRegister.DisableStartupTask();
             }
         }
+
+        private void SettingsPage_Button_Quit_Click(object sender, RoutedEventArgs e)
+        {
+            App.RequestExitApp();
+        }
     }
 }

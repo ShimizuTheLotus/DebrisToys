@@ -177,4 +177,13 @@
   <data name="OpenSourceNoticePage_TextBlock_OpenSourceTitle.Text" xml:space="preserve">
     <value>开放源代码声明</value>
   </data>
+  <data name="SettingsPage_TextBlock_Title.Text" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="SettingsPage_TextBlock_Quit.Text" xml:space="preserve">
+    <value>退出</value>
+  </data>
+  <data name="SettingsPage_Button_Quit.Content" xml:space="preserve">
+    <value>关闭应用</value>
+  </data>
 </root>

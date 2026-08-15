@@ -9,6 +9,9 @@
       mc:Ignorable="d">
 
     <StackPanel Margin="{ThemeResource ToolPagePadding}">
+        <TextBlock x:Uid="SettingsPage_TextBlock_Title"
+                   Style="{ThemeResource TitleTextBlockStyle}"
+                   Margin=" 0 0 0 16" />
         <ui:Card x:Uid="Settings_LaunchOnStartup">
             <ui:Card.IconElement>
                 <FontIcon Glyph="&#xEC4A;" />
@@ -19,5 +22,11 @@
                               Toggled="Settings_LaunchOnStartup_ToggleSwitch_Toggled" />
             </ui:Card.RightPartElement>
         </ui:Card>
+        <TextBlock x:Uid="SettingsPage_TextBlock_Quit"
+                   Style="{ThemeResource SubtitleTextBlockStyle}" 
+                   Margin="{ThemeResource SubtitleMargin}"/>
+        <Button x:Name="SettingsPage_Button_Quit"
+                x:Uid="SettingsPage_Button_Quit"
+                Click="SettingsPage_Button_Quit_Click" />
     </StackPanel>
 </Page>
