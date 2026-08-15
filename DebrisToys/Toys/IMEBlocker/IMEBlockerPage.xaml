@@ -8,47 +8,50 @@
       xmlns:ui="using:DebrisToys.UI.Control"
       mc:Ignorable="d">
 
-    <StackPanel Margin="{ThemeResource ToolPagePadding}">
-        <ui:Card x:Uid="Toys_IMEBlocker_Card_Toggle">
-            <ui:Card.IconElement>
-                <ImageIcon Source="ms-appx:///Images/Icon/IMEBlocker.svg" />
-            </ui:Card.IconElement>
-            <ui:Card.RightPartElement>
-                <ToggleSwitch x:Name="IMEBlockerToggleSwitch"
-                              Style="{ThemeResource RightAlignedCompactToggleSwitchStyle}"
-                              Toggled="IMEBlockerToggleSwitch_Toggled" />
-            </ui:Card.RightPartElement>
-        </ui:Card>
+    <ScrollView>
+        <StackPanel Margin="{ThemeResource ToolPagePadding}"
+                    MaxWidth="{ThemeResource ToyPageContentMaxWidth}">
+            <ui:Card x:Uid="Toys_IMEBlocker_Card_Toggle">
+                <ui:Card.IconElement>
+                    <ImageIcon Source="ms-appx:///Images/Icon/IMEBlocker.svg" />
+                </ui:Card.IconElement>
+                <ui:Card.RightPartElement>
+                    <ToggleSwitch x:Name="IMEBlockerToggleSwitch"
+                                  Style="{ThemeResource RightAlignedCompactToggleSwitchStyle}"
+                                  Toggled="IMEBlockerToggleSwitch_Toggled" />
+                </ui:Card.RightPartElement>
+            </ui:Card>
 
-        <RelativePanel>
-            <StackPanel Orientation="Horizontal"
-                        RelativePanel.AlignLeftWithPanel="True"
+            <RelativePanel>
+                <StackPanel Orientation="Horizontal"
+                            RelativePanel.AlignLeftWithPanel="True"
+                            RelativePanel.AlignTopWithPanel="True"
+                            RelativePanel.AlignBottomWithPanel="True"
+                            Spacing="20"
+                            Padding="4">
+                    <TextBox x:Name="AddOptionAppNameTextBlock"
+                             PlaceholderText="notepad.exe"
+                             VerticalAlignment="Center"
+                             AcceptsReturn="False"
+                             PreviewKeyDown="AddOptionAppNameTextBlock_PreviewKeyDown" />
+                    <Button x:Name="AddAppNameButton"
+                            x:Uid="Toys_IMEBlocker_TargetAppListCard_Option_Add"
+                            Click="AddAppNameButton_Click" />
+                </StackPanel>
+                <Button x:Name="RemoveAppNameButton"
+                        Style="{ThemeResource SubtleButtonStyle}"
                         RelativePanel.AlignTopWithPanel="True"
+                        RelativePanel.AlignRightWithPanel="True"
                         RelativePanel.AlignBottomWithPanel="True"
-                        Spacing="20"
-                        Padding="4">
-                <TextBox x:Name="AddOptionAppNameTextBlock"
-                         PlaceholderText="notepad.exe"
-                         VerticalAlignment="Center"
-                         AcceptsReturn="False"
-                         PreviewKeyDown="AddOptionAppNameTextBlock_PreviewKeyDown"/>
-                <Button x:Name="AddAppNameButton"
-                        x:Uid="Toys_IMEBlocker_TargetAppListCard_Option_Add"
-                        Click="AddAppNameButton_Click" />
-            </StackPanel>
-            <Button x:Name="RemoveAppNameButton"
-                    Style="{ThemeResource SubtleButtonStyle}"
-                    RelativePanel.AlignTopWithPanel="True"
-                    RelativePanel.AlignRightWithPanel="True"
-                    RelativePanel.AlignBottomWithPanel="True"
-                    Click="RemoveAppNameButton_Click"
-                    Foreground="{ThemeResource DangerousOptionForegroundDefaultBrush}">
-                <Button.Content>
-                    <FontIcon Glyph="&#xE74D;" />
-                </Button.Content>
-            </Button>
-        </RelativePanel>
-        <ui:TargetAppListCard x:Name="TargetAppListCard"
-                              MinHeight="120" />
-    </StackPanel>
+                        Click="RemoveAppNameButton_Click"
+                        Foreground="{ThemeResource DangerousOptionForegroundDefaultBrush}">
+                    <Button.Content>
+                        <FontIcon Glyph="&#xE74D;" />
+                    </Button.Content>
+                </Button>
+            </RelativePanel>
+            <ui:TargetAppListCard x:Name="TargetAppListCard"
+                                  MinHeight="120" />
+        </StackPanel>
+    </ScrollView>
 </Page>

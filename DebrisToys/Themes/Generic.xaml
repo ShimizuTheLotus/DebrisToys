@@ -6,6 +6,7 @@
         <ResourceDictionary Source="/Themes/RightAlignedCompactToggleSwitchStyle.xaml" />
         <ResourceDictionary Source="/Themes/Page.xaml" />
         <ResourceDictionary Source="/Themes/Brush.xaml" />
+        <ResourceDictionary Source="/Themes/TransparentFrameNavigationView.xaml" />
         <ResourceDictionary Source="/UI/Control/Card.xaml" />
         <ResourceDictionary Source="/UI/Control/TargetAppListCard.xaml" />
         <ResourceDictionary Source="/UI/Control/TargetAppListCardItem.xaml" />

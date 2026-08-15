@@ -20,8 +20,7 @@ namespace DebrisToys.UI.Tray
 
         private void ShowMainWindow()
         {
-            App.MainWindow?.AppWindow.Show();
-            Global.Helper.WindowInteraction.SetForegroundWindowAndSetFocus(App.MainWindow);
+            App.MainWindow?.Activate();
         }
 
         public void ExitApp()

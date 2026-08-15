@@ -9,10 +9,13 @@
             <CornerRadius x:Key="CardCornerRadius">6</CornerRadius>
             <x:Double x:Key="CardIconSize">18</x:Double>
             <Thickness x:Key="CardIconGridMargin">0 0 16 0</Thickness>
+            <Thickness x:Key="CardIconGridPadding">-2</Thickness>
             <FontWeight x:Key="CardTitleFontWeight">SemiBold</FontWeight>
             <x:Double x:Key="CardDescriptionTextOpacity">0.6</x:Double>
             <x:Double x:Key="CardTitleFontSize">15</x:Double>
             <x:Double x:Key="CardDescriptionFontSize">13</x:Double>
+            <x:Double x:Key="LinkCardMinWidth">64</x:Double>
+            <x:Double x:Key="LinkCardRightIconFontSize">16</x:Double>
         </ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
 
@@ -25,31 +28,128 @@
                             BorderThickness="{ThemeResource CardBorderThickness}"
                             CornerRadius="{ThemeResource CardCornerRadius}">
                         <RelativePanel Padding="{ThemeResource CardPadding}">
-                            <StackPanel Orientation="Horizontal"
-                                        HorizontalAlignment="Stretch"
-                                        RelativePanel.AlignLeftWithPanel="True"
-                                        RelativePanel.AlignTopWithPanel="True"
-                                        RelativePanel.LeftOf="PART_RightAlignedContentGrid"
-                                        RelativePanel.AlignBottomWithPanel="True">
+                            <Grid RelativePanel.AlignLeftWithPanel="True"
+                                  RelativePanel.AlignTopWithPanel="True"
+                                  RelativePanel.LeftOf="PART_RightAlignedContentGrid"
+                                  RelativePanel.AlignBottomWithPanel="True">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
                                 <Grid x:Name="PART_IconGrid"
+                                      Grid.Column="0"
                                       MaxHeight="{ThemeResource CardIconSize}"
                                       MaxWidth="{ThemeResource CardIconSize}"
-                                      Margin="{ThemeResource CardIconGridMargin}" />
-                                <StackPanel x:Name="PART_TextContentStackPanel">
+                                      Margin="{ThemeResource CardIconGridMargin}"
+                                      Padding="{ThemeResource CardIconGridPadding}"
+                                      HorizontalAlignment="Stretch" />
+                                <Grid x:Name="PART_TextContentGrid"
+                                      HorizontalAlignment="Stretch"
+                                      Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
                                     <TextBlock x:Name="PART_TitleTextBlock"
+                                               Grid.Row="0"
                                                FontWeight="{ThemeResource CardTitleFontWeight}"
                                                FontSize="{ThemeResource CardTitleFontSize}"
-                                               TextWrapping="Wrap" />
+                                               TextWrapping="Wrap"
+                                               HorizontalAlignment="Stretch" />
                                     <TextBlock x:Name="PART_DescriptionTextBlock"
+                                               Grid.Row="1"
                                                Opacity="{ThemeResource CardDescriptionTextOpacity}"
                                                FontSize="{ThemeResource CardDescriptionFontSize}"
-                                               TextWrapping="Wrap" />
-                                </StackPanel>
-                            </StackPanel>
+                                               TextWrapping="Wrap"
+                                               HorizontalAlignment="Stretch" />
+                                </Grid>
+                            </Grid>
                             <Grid x:Name="PART_RightAlignedContentGrid"
                                   RelativePanel.AlignTopWithPanel="True"
                                   RelativePanel.AlignRightWithPanel="True"
                                   RelativePanel.AlignBottomWithPanel="True">
+                            </Grid>
+                        </RelativePanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:Card"
+           x:Key="LinkCardStyle">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:Card">
+                    <Border x:Name="PART_Border"
+                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                            BorderThickness="{ThemeResource CardBorderThickness}"
+                            CornerRadius="{ThemeResource CardCornerRadius}"
+                            MinHeight="{ThemeResource LinkCardMinWidth}">
+                        <Border.BackgroundTransition>
+                            <BrushTransition />
+                        </Border.BackgroundTransition>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_Border.Background"
+                                                Value="{ThemeResource CardBackgroundFillColorTertiaryBrush}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="PointerPressed">
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_Border.Background"
+                                                Value="{ThemeResource CardBackgroundFillColorSecondaryBrush}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <RelativePanel Padding="{ThemeResource CardPadding}">
+                            <Grid RelativePanel.AlignLeftWithPanel="True"
+                                  RelativePanel.AlignTopWithPanel="True"
+                                  RelativePanel.LeftOf="PART_RightAlignedContentGrid"
+                                  RelativePanel.AlignBottomWithPanel="True">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid x:Name="PART_IconGrid"
+                                      Grid.Column="0"
+                                      MaxHeight="{ThemeResource CardIconSize}"
+                                      MaxWidth="{ThemeResource CardIconSize}"
+                                      Margin="{ThemeResource CardIconGridMargin}"
+                                      Padding="{ThemeResource CardIconGridPadding}"
+                                      HorizontalAlignment="Stretch" />
+                                <Grid x:Name="PART_TextContentGrid"
+                                      HorizontalAlignment="Stretch"
+                                      Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock x:Name="PART_TitleTextBlock"
+                                               Grid.Row="0"
+                                               FontWeight="{ThemeResource CardTitleFontWeight}"
+                                               FontSize="{ThemeResource CardTitleFontSize}"
+                                               TextWrapping="Wrap"
+                                               HorizontalAlignment="Stretch" />
+                                    <TextBlock x:Name="PART_DescriptionTextBlock"
+                                               Grid.Row="1"
+                                               Opacity="{ThemeResource CardDescriptionTextOpacity}"
+                                               FontSize="{ThemeResource CardDescriptionFontSize}"
+                                               TextWrapping="Wrap"
+                                               HorizontalAlignment="Stretch" />
+                                </Grid>
+                            </Grid>
+                            <Grid x:Name="PART_RightAlignedContentGrid"
+                                  RelativePanel.AlignTopWithPanel="True"
+                                  RelativePanel.AlignRightWithPanel="True"
+                                  RelativePanel.AlignBottomWithPanel="True">
+                                <FontIcon Glyph="&#xE8A7;"
+                                          FontSize="{ThemeResource LinkCardRightIconFontSize}"/>
                             </Grid>
                         </RelativePanel>
                     </Border>

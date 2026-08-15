@@ -4,4 +4,5 @@
                     xmlns:local="using:DebrisToys.UI.Control">
     <Thickness x:Key="ToolPagePadding">12</Thickness>
     <x:Double x:Key="ToyPageSpacing">8</x:Double>
+    <x:Double x:Key="ToyPageContentMaxWidth">1000</x:Double>
 </ResourceDictionary>

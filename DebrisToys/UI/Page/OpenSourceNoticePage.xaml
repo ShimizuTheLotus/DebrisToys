@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page x:Class="DebrisToys.UI.Page.OpenSourceNoticePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:DebrisToys.UI.Page"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <ScrollView>
+        <StackPanel Margin="{ThemeResource ToolPagePadding}"
+                    MaxWidth="{ThemeResource ToyPageContentMaxWidth}">
+            <TextBlock x:Uid="OpenSourceNoticePage_TextBlock_OpenSourceTitle"
+                       Style="{ThemeResource TitleLargeTextBlockStyle}" 
+                       Margin="0 0 0 16"/>
+            <StackPanel x:Name="OpenSourceItemsStackPanel"
+                        Spacing="8"></StackPanel>
+        </StackPanel>
+    </ScrollView>
+</Page>

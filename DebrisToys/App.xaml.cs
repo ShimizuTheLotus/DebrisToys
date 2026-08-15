@@ -91,7 +91,7 @@ namespace DebrisToys
 
         private async void SetUpTrayIcon()
         {
-            Uri fileUri = new("ms-appx:///Images/Icon/ico.ico");
+            Uri fileUri = new("ms-appx:///Images/Icon/debris.ico");
             StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(fileUri);
 
             string iconPath = file.Path;

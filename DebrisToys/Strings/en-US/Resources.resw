@@ -159,4 +159,22 @@
   <data name="DebrisToys_UI_Control_HotkeySettingsControlContentPage_ClearButton.Text" xml:space="preserve">
     <value>Clear</value>
   </data>
+  <data name="MainWindow_NavigationView_Item_Home.Content" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="HomePage_Card_OpenSourceNotices.Title" xml:space="preserve">
+    <value>Open source notices</value>
+  </data>
+  <data name="Toys_NoTaskbar_Card_Toggle_Hotkey.Title" xml:space="preserve">
+    <value>Toggle taskbar</value>
+  </data>
+  <data name="HomePage_TextBlock_WelcomeToDebrisToys.Text" xml:space="preserve">
+    <value>Welcome to DebrisToys</value>
+  </data>
+  <data name="HomePage_Card_ViewItOnGitHub.Title" xml:space="preserve">
+    <value>View it on github</value>
+  </data>
+  <data name="OpenSourceNoticePage_TextBlock_OpenSourceTitle.Text" xml:space="preserve">
+    <value>Open source notices</value>
+  </data>
 </root>

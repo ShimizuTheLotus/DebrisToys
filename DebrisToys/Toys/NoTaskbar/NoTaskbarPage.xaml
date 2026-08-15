@@ -9,33 +9,37 @@
       xmlns:shkui="using:ShimizuToolkit.HotkeyWinUI.Controls"
       mc:Ignorable="d">
 
-    <StackPanel Margin="{ThemeResource ToolPagePadding}" Spacing="{ThemeResource ToyPageSpacing}">
-        <ui:Card x:Uid="Toys_NoTaskbar_Card_Toggle">
-            <ui:Card.IconElement>
-                <BitmapIcon UriSource="ms-appx:///Images/Icon/NoTaskBar.png"
-                            ShowAsMonochrome="False" />
-            </ui:Card.IconElement>
-            <ui:Card.RightPartElement>
-                <ToggleSwitch x:Name="TaskbarToggleSwitch"
-                              Style="{ThemeResource RightAlignedCompactToggleSwitchStyle}"
-                              Toggled="TaskbarToggleSwitch_Toggled" />
-            </ui:Card.RightPartElement>
-        </ui:Card>
-        <ui:Card Title="Hotkeytest">
-            <ui:Card.RightPartElement>
-                <ui:HotkeyCardEditEntryButton x:Name="TaskbarToggleSwitchHotkeyEntry"
-                                              HotkeyIdentifier="TaskbarHideToy.Toggle"/>
-            </ui:Card.RightPartElement>
-        </ui:Card>
-        <ui:Card x:Uid="Toys_NoTaskbar_Card_Srartup_Toggle">
-            <ui:Card.IconElement>
-                <FontIcon Glyph="&#xEC4A;" />
-            </ui:Card.IconElement>
-            <ui:Card.RightPartElement>
-                <ToggleSwitch x:Name="TaskbarToyStartUpToggleSwitch"
-                              Style="{ThemeResource RightAlignedCompactToggleSwitchStyle}"
-                              Toggled="TaskbarToyStartUpToggleSwitch_Toggled" />
-            </ui:Card.RightPartElement>
-        </ui:Card>
-    </StackPanel>
+    <ScrollView>
+        <StackPanel Margin="{ThemeResource ToolPagePadding}"
+                    Spacing="{ThemeResource ToyPageSpacing}"
+                    MaxWidth="{ThemeResource ToyPageContentMaxWidth}">
+            <ui:Card x:Uid="Toys_NoTaskbar_Card_Toggle">
+                <ui:Card.IconElement>
+                    <BitmapIcon UriSource="ms-appx:///Images/Icon/NoTaskBar.png"
+                                ShowAsMonochrome="False" />
+                </ui:Card.IconElement>
+                <ui:Card.RightPartElement>
+                    <ToggleSwitch x:Name="TaskbarToggleSwitch"
+                                  Style="{ThemeResource RightAlignedCompactToggleSwitchStyle}"
+                                  Toggled="TaskbarToggleSwitch_Toggled" />
+                </ui:Card.RightPartElement>
+            </ui:Card>
+            <ui:Card x:Uid="Toys_NoTaskbar_Card_Toggle_Hotkey">
+                <ui:Card.RightPartElement>
+                    <ui:HotkeyCardEditEntryButton x:Name="TaskbarToggleSwitchHotkeyEntry"
+                                                  HotkeyIdentifier="TaskbarHideToy.Toggle" />
+                </ui:Card.RightPartElement>
+            </ui:Card>
+            <ui:Card x:Uid="Toys_NoTaskbar_Card_Srartup_Toggle">
+                <ui:Card.IconElement>
+                    <FontIcon Glyph="&#xEC4A;" />
+                </ui:Card.IconElement>
+                <ui:Card.RightPartElement>
+                    <ToggleSwitch x:Name="TaskbarToyStartUpToggleSwitch"
+                                  Style="{ThemeResource RightAlignedCompactToggleSwitchStyle}"
+                                  Toggled="TaskbarToyStartUpToggleSwitch_Toggled" />
+                </ui:Card.RightPartElement>
+            </ui:Card>
+        </StackPanel>
+    </ScrollView>
 </Page>

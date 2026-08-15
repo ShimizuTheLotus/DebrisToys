@@ -1,5 +1,6 @@
 using DebrisToys.Toys.IMEBlocker;
 using DebrisToys.Toys.NoTaskbar;
+using DebrisToys.UI.Page;
 using Microsoft.UI.Input;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
@@ -8,12 +9,14 @@ using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Xml.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.WindowManagement;
@@ -38,6 +41,17 @@ namespace DebrisToys
             AppTitleBar.Loaded += AppTitleBar_Loaded;
             AppTitleBar.SizeChanged += AppTitleBar_SizeChanged;
             AppWindow.Closing += AppWindow_Closing;
+
+            NavigationView.Loaded += NavigationView_Loaded;
+        }
+
+        private void NavigationView_Loaded(object sender, RoutedEventArgs e)
+        {
+            NavigationView.Loaded -= NavigationView_Loaded;
+            NavigationView.SelectedItem = HomeTaskbarItem;
+            FrameNavigationOptions navOptions = new FrameNavigationOptions();
+            navOptions.TransitionInfoOverride = new SlideNavigationTransitionInfo();
+            NavigationFrame.NavigateToType(typeof(HomePage), null, navOptions);
         }
 
         private void AppWindow_Closing(Microsoft.UI.Windowing.AppWindow sender, AppWindowClosingEventArgs args)
@@ -72,7 +86,11 @@ namespace DebrisToys
             {
                 navigationTargetType = typeof(DebrisToys.UI.Page.SettingsPage);
             }
-            if (args.InvokedItem == NoTaskbarItem.Content)
+            else if (args.InvokedItem == HomeTaskbarItem.Content)
+            {
+                navigationTargetType = typeof(HomePage);
+            }
+            else if (args.InvokedItem == NoTaskbarItem.Content)
             {
                 navigationTargetType = typeof(NoTaskbarPage);
             }

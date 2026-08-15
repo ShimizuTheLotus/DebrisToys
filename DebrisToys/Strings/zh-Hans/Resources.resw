@@ -159,4 +159,22 @@
   <data name="DebrisToys_UI_Control_HotkeySettingsControlContentPage_ClearButton.Text" xml:space="preserve">
     <value>清除</value>
   </data>
+  <data name="MainWindow_NavigationView_Item_Home.Content" xml:space="preserve">
+    <value>主页</value>
+  </data>
+  <data name="HomePage_Card_OpenSourceNotices.Title" xml:space="preserve">
+    <value>开放源代码声明</value>
+  </data>
+  <data name="Toys_NoTaskbar_Card_Toggle_Hotkey.Title" xml:space="preserve">
+    <value>切换任务栏显示</value>
+  </data>
+  <data name="HomePage_TextBlock_WelcomeToDebrisToys.Text" xml:space="preserve">
+    <value>欢迎使用DebrisToys</value>
+  </data>
+  <data name="HomePage_Card_ViewItOnGitHub.Title" xml:space="preserve">
+    <value>在GitHub查看此项目</value>
+  </data>
+  <data name="OpenSourceNoticePage_TextBlock_OpenSourceTitle.Text" xml:space="preserve">
+    <value>开放源代码声明</value>
+  </data>
 </root>

@@ -10,15 +10,15 @@
   IgnorableNamespaces="uap uap5 rescap systemai">
 
   <Identity
-    Name="4dd98132-956a-4c51-a0fe-2e1ebd133665"
+    Name="ShimizuTheLotus.DebrisToys"
     Publisher="CN=99E803D1-448C-451E-AABB-517F391355C6"
-    Version="1.0.1.0" />
+    Version="1.0.3.0" />
 
   <mp:PhoneIdentity PhoneProductId="4dd98132-956a-4c51-a0fe-2e1ebd133665" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>DebrisToys</DisplayName>
-    <PublisherDisplayName>ChiSu</PublisherDisplayName>
+    <PublisherDisplayName>ShimizuTheLotus</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
 
@@ -28,7 +28,8 @@
   </Dependencies>
 
   <Resources>
-    <Resource Language="x-generate"/>
+	  <Resource Language="en-US"/>
+	  <Resource Language="zh-Hans"/>
   </Resources>
 
   <Applications>
@@ -41,7 +42,7 @@
         BackgroundColor="transparent"
         Square150x150Logo="Images\Square150x150Logo.png"
         Square44x44Logo="Images\Square44x44Logo.png">
-        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png" />
+        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png"  Square71x71Logo="Images\SmallTile.png" Square310x310Logo="Images\LargeTile.png"/>
         <uap:SplashScreen Image="Images\SplashScreen.png" />
       </uap:VisualElements>
 		<Extensions>

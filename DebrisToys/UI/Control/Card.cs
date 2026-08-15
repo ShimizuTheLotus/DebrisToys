@@ -29,6 +29,25 @@ namespace DebrisToys.UI.Control
                 typeof(string),
                 typeof(Card),
                 new PropertyMetadata(string.Empty, OnDescriptionChanged));
+        public static readonly DependencyProperty IsPointOverProperty =
+            DependencyProperty.Register(
+                nameof(IsPointerOver),
+                typeof(bool),
+                typeof(Card),
+                new PropertyMetadata(false));
+        public event RoutedEventHandler? Click;
+
+        public bool IsPointerOver
+        {
+            get
+            {
+                return (bool)GetValue(IsPointOverProperty);
+            }
+            set
+            {
+                SetValue(IsPointOverProperty, value);
+            }
+        }
         private static void OnTitleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var card = d as Card;
@@ -44,7 +63,7 @@ namespace DebrisToys.UI.Control
 
             bool isDescriptionEmpty = string.IsNullOrWhiteSpace(card?.Description);
             card?._descriptionTextBlock?.Visibility = isDescriptionEmpty ? Visibility.Collapsed : Visibility.Visible;
-            card?._textContentStackPanel?.VerticalAlignment = isDescriptionEmpty ? VerticalAlignment.Center : VerticalAlignment.Stretch;
+            card?._textContentGrid?.VerticalAlignment = isDescriptionEmpty ? VerticalAlignment.Center : VerticalAlignment.Stretch;
         }
 
         public IconElement? IconElement
@@ -52,11 +71,14 @@ namespace DebrisToys.UI.Control
             get => field;
             set
             {
-                field = value;
-                _iconGrid?.Children.Clear();
-                if (value != null)
+                if (field != value)
                 {
-                    _iconGrid?.Children.Add(value);
+                    field = value;
+                    _iconGrid?.Children.Clear();
+                    if (value != null)
+                    {
+                        _iconGrid?.Children.Add(value);
+                    }
                 }
             }
         }
@@ -93,14 +115,61 @@ namespace DebrisToys.UI.Control
         }
 
         private Grid? _iconGrid;
-        private StackPanel? _textContentStackPanel;
+        private Grid? _textContentGrid;
         private TextBlock? _titleTextBlock;
         private TextBlock? _descriptionTextBlock;
         private Grid? _rightPartGrid;
 
+        private bool _clearRightPartElementRequestFinished = true;
+
         public Card()
         {
             DefaultStyleKey = typeof(Card);
+            PointerEntered += Card_PointerEntered;
+            PointerExited += Card_PointerExited;
+            PointerCanceled += Card_PointerCanceled;
+            PointerPressed += Card_PointerPressed;
+            PointerReleased += Card_PointerReleased;
+            this.Tapped += Card_Tapped;
+        }
+
+        private void Card_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Click?.Invoke(this, e);
+        }
+
+        private void Card_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            if (IsPointerOver)
+            {
+                VisualStateManager.GoToState(this, "PointerOver", true);
+            }
+            else
+            {
+                VisualStateManager.GoToState(this, stateName: "Normal", true);
+            }
+        }
+
+        private void Card_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            VisualStateManager.GoToState(this, stateName: "PointerPressed", true);
+        }
+
+        private void Card_PointerCanceled(object sender, PointerRoutedEventArgs e)
+        {
+            VisualStateManager.GoToState(this, stateName: "Normal", true);
+        }
+
+        private void Card_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            IsPointerOver = false;
+            VisualStateManager.GoToState(this, stateName: "Normal", true);
+        }
+
+        private void Card_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            IsPointerOver = true;
+            VisualStateManager.GoToState(this, "PointerOver", true);
         }
 
         protected override void OnApplyTemplate()
@@ -111,7 +180,7 @@ namespace DebrisToys.UI.Control
             _titleTextBlock = GetTemplateChild("PART_TitleTextBlock") as TextBlock;
             _descriptionTextBlock = GetTemplateChild("PART_DescriptionTextBlock") as TextBlock;
             _rightPartGrid = GetTemplateChild("PART_RightAlignedContentGrid") as Grid;
-            _textContentStackPanel = GetTemplateChild("PART_TextContentStackPanel") as StackPanel;
+            _textContentGrid = GetTemplateChild("PART_TextContentGrid") as Grid;
 
             if (_iconGrid != null
             && _titleTextBlock != null
@@ -126,15 +195,31 @@ namespace DebrisToys.UI.Control
                 _titleTextBlock.Text = Title;
                 _descriptionTextBlock.Text = Description;
 
-                _rightPartGrid.Children.Clear();
                 if (RightPartElement != null)
                 {
                     _rightPartGrid.Children.Add(RightPartElement);
                 }
                 bool isDescriptionEmpty = string.IsNullOrWhiteSpace(_descriptionTextBlock.Text);
                 _descriptionTextBlock.Visibility = isDescriptionEmpty ? Visibility.Collapsed : Visibility.Visible;
-                _textContentStackPanel.VerticalAlignment = isDescriptionEmpty ? VerticalAlignment.Center : VerticalAlignment.Stretch;
+                _textContentGrid?.VerticalAlignment = isDescriptionEmpty ? VerticalAlignment.Center : VerticalAlignment.Stretch;
+
+                if (!_clearRightPartElementRequestFinished)
+                {
+                    _rightPartGrid.Children.Clear();
+                    _clearRightPartElementRequestFinished = true;
+                }
             }
+        }
+
+        public void ClearRightPartElement()
+        {
+            if (_rightPartGrid == null)
+            {
+                _clearRightPartElementRequestFinished = false;
+                return;
+            }
+            _rightPartGrid.Children.Clear();
+            RightPartElement = null;
         }
     }
 }

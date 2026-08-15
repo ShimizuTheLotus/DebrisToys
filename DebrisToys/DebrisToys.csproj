@@ -14,6 +14,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <None Remove="Themes\Brush.xaml" />
+	  <None Remove="Themes\TransparentFrameNavigationView.xaml" />
 	  <None Remove="Toys\IMEBlocker\IMEBlockerPage.xaml" />
 	  <None Remove="UI\Control\Card.xaml" />
 	  <None Remove="UI\Control\HotkeyCardEditEntryButton.xaml" />
@@ -21,7 +22,10 @@
 	  <None Remove="UI\Control\Page.xaml" />
 	  <None Remove="UI\Control\TargetAppListCardItem.xaml" />
 	  <None Remove="UI\Page\ContentPresenter\HotkeySettingsControlContentPage.xaml" />
+	  <None Remove="UI\Page\HomePage.xaml" />
+	  <None Remove="UI\Page\OpenSourceNoticePage.xaml" />
 	  <None Remove="UI\Page\SettingsPage.xaml" />
+	  <None Remove="UI\Window\OpenSourceNoticeWindow.xaml" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Page Remove="UI\RightAlignedCompactToggleSwitchStyle.xaml" />
@@ -46,11 +50,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Class\" />
-		<Folder Include="UI\Window\" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\..\..\LocalProj\ShimizuToolkit.HotkeyWinUI.Controls\ShimizuToolkit.HotkeyWinUI.Controls.csproj" />
 		<ProjectReference Include="..\..\..\LocalProj\ShimizuToolkit.HotkeyWinUI\ShimizuToolKit.HotkeyWinUI.csproj" />
 		<ProjectReference Include="..\..\..\LocalProj\ShimizuToolkit.TrayIconWinUI\ShimizuToolkit.TrayIconWinUI.csproj" />
@@ -72,6 +71,18 @@
 	  <None Update="Themes\RightAlignedCompactToggleSwitchStyle.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </None>
+	  <Page Update="UI\Page\OpenSourceNoticePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	  <Page Update="UI\Window\OpenSourceNoticeWindow.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	  <Page Update="UI\Page\HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	  <Page Update="Themes\TransparentFrameNavigationView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
 	  <Page Update="UI\Control\HotkeyCardEditEntryButton.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </Page>

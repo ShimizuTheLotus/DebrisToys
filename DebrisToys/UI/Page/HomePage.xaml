@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page x:Class="DebrisToys.UI.Page.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:DebrisToys.UI.Page"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:ui="using:DebrisToys.UI.Control"
+      mc:Ignorable="d">
+
+    <ScrollView>
+        <StackPanel Margin="{ThemeResource ToolPagePadding}"
+                    MaxWidth="{ThemeResource ToyPageContentMaxWidth}"
+                    Spacing="8">
+            <TextBlock x:Uid="HomePage_TextBlock_WelcomeToDebrisToys"
+                       Text="Welcome"
+                       Style="{ThemeResource TitleTextBlockStyle}"
+                       TextWrapping="WrapWholeWords"
+                       Margin="0 0 0 24" />
+            <ui:Card x:Name="HomePage_Card_ViewItOnGitHub"
+                     x:Uid="HomePage_Card_ViewItOnGitHub"
+                     Style="{ThemeResource LinkCardStyle}"
+                     Click="HomePage_Card_ViewItOnGitHub_Click">
+                <ui:Card.IconElement>
+                    <ImageIcon Source="ms-appx:///Images/Icon/GitHub_Invertocat_Black.png" />
+                </ui:Card.IconElement>
+            </ui:Card>
+            <ui:Card x:Uid="HomePage_Card_OpenSourceNotices"
+                     Style="{ThemeResource LinkCardStyle}"
+                     Click="Card_Click">
+                <ui:Card.IconElement>
+                    <FontIcon Glyph="&#xE950;" />
+                </ui:Card.IconElement>
+            </ui:Card>
+        </StackPanel>
+    </ScrollView>
+</Page>
