@@ -35,7 +35,7 @@
     <PathToXAMLWinRTImplementations>DebrisToys\</PathToXAMLWinRTImplementations>
     <WinUISDKReferences>false</WinUISDKReferences>
   </PropertyGroup>
-  <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.props" />
+  <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.props" Condition="Exists('$(WapProjPath)\Microsoft.DesktopBridge.props')" />
   <PropertyGroup>
     <ProjectGuid>f6408200-f320-4e70-9631-0ecd8ef44939</ProjectGuid>
     <TargetPlatformVersion>10.0.26100.0</TargetPlatformVersion>
@@ -49,7 +49,7 @@
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
-    <AppxBundlePlatforms>x86|x64|arm64</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
   </PropertyGroup>
@@ -152,5 +152,11 @@
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
-  <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
+  <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" Condition="Exists('$(WapProjPath)\Microsoft.DesktopBridge.targets')" />
+  <Target Name="Build" Condition="!Exists('$(WapProjPath)\Microsoft.DesktopBridge.targets')">
+    <MSBuild Projects="$(EntryPointProjectUniqueName)" Targets="Build" Properties="Configuration=$(Configuration);Platform=$(Platform)" />
+  </Target>
+  <Target Name="Rebuild" Condition="!Exists('$(WapProjPath)\Microsoft.DesktopBridge.targets')">
+    <CallTarget Targets="Build" />
+  </Target>
 </Project>
