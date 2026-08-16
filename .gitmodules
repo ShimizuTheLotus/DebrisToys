@@ -1,0 +1,9 @@
+[submodule "src/lib/ShimizuToolkit.HotkeyWinUI.Controls"]
+	path = src/lib/ShimizuToolkit.HotkeyWinUI.Controls
+	url = https://github.com/ShimizuTheLotus/ShimizuToolkit.HotkeyWinUI.Controls.git
+[submodule "src/lib/ShimizuToolkit.HotkeyWinUI"]
+	path = src/lib/ShimizuToolkit.HotkeyWinUI
+	url = https://github.com/ShimizuTheLotus/ShimizuToolkit.HotkeyWinUI.git
+[submodule "src/lib/ShimizuToolkit.TrayIconWinUI"]
+	path = src/lib/ShimizuToolkit.TrayIconWinUI
+	url = https://github.com/ShimizuTheLotus/ShimizuToolkit.TrayIconWinUI.git
