@@ -87,6 +87,11 @@
                             <ImageIcon Source="ms-appx:///Images/Icon/IMEBlocker.svg" />
                         </NavigationViewItem.Icon>
                     </NavigationViewItem>
+                    <NavigationViewItem x:Name="ScreenRotateItem"
+                                        Content="Screen Rotate"
+                                        x:Uid="MainWindow_NavigationView_Item_ScreenRotate.Content">
+
+                    </NavigationViewItem>
                 </NavigationView.MenuItems>
             </NavigationView>
         </Grid>

@@ -1,5 +1,6 @@
 ﻿using DebrisToys.Toys.IMEBlocker;
 using DebrisToys.Toys.NoTaskbar;
+using DebrisToys.Toys.ScreenRotate;
 using DebrisToys.ToysManager.Base;
 using DebrisToys.ToysManager.Interface;
 using System;
@@ -37,13 +38,15 @@ namespace DebrisToys.ToysManager
             ToyConfigs =
             [
                 NoTaskbarConfig.Current,
-                IMEBlockerConfig.Current
+                IMEBlockerConfig.Current,
+                ScreenRotateToyConfig.Current,
             ];
 
             Toys =
             [
                 TaskbarHideToy.Current,
-                IMEBlocker.Current
+                IMEBlocker.Current,
+                ScreenRotateToy.Current
             ];
 
             RunToys();

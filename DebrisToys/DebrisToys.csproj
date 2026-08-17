@@ -19,6 +19,7 @@
 	  <None Remove="Themes\Title.xaml" />
 	  <None Remove="Themes\TransparentFrameNavigationView.xaml" />
 	  <None Remove="Toys\IMEBlocker\IMEBlockerPage.xaml" />
+	  <None Remove="Toys\ScreenRotate\ScreenRotateToyPage.xaml" />
 	  <None Remove="UI\Control\Card.xaml" />
 	  <None Remove="UI\Control\HotkeyCardEditEntryButton.xaml" />
 	  <None Remove="UI\Control\HotkeySettingControl.xaml" />
@@ -74,6 +75,9 @@
 	  <None Update="Themes\RightAlignedCompactToggleSwitchStyle.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </None>
+	  <Page Update="Toys\ScreenRotate\ScreenRotateToyPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
 	  <Page Update="Themes\Title.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </Page>

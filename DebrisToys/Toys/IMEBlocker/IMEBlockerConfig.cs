@@ -73,34 +73,26 @@ namespace DebrisToys.Toys.IMEBlocker
 
         private async Task ApplyIsEnabledConfig()
         {
-            try
+            string? json = await ToysConfigManager.Current.GetConfig(IsEnabledConfigPath);
+            if (string.IsNullOrWhiteSpace(json))
+                return;
+            var options = new JsonSerializerOptions
             {
-                string? json = await ToysConfigManager.Current.GetConfig(IsEnabledConfigPath);
-                var options = new JsonSerializerOptions
-                {
-                    TypeInfoResolver = DebrisToys.Global.Helper.AppJsonContext.Default
-                };
-                IsEnabled = JsonSerializer.Deserialize<bool>(json, options);
-            }
-            catch
-            {
-            }
+                TypeInfoResolver = DebrisToys.Global.Helper.AppJsonContext.Default
+            };
+            IsEnabled = JsonSerializer.Deserialize<bool>(json, options);
         }
 
         private async Task ApplyTargetAppConfig()
         {
-            try
+            string? json = await ToysConfigManager.Current.GetConfig(TargetAppConfigPath);
+            if (string.IsNullOrWhiteSpace(json))
+                return;
+            var options = new JsonSerializerOptions
             {
-                string? json = await ToysConfigManager.Current.GetConfig(TargetAppConfigPath);
-                var options = new JsonSerializerOptions
-                {
-                    TypeInfoResolver = DebrisToys.Global.Helper.AppJsonContext.Default
-                };
-                TargetAppList = JsonSerializer.Deserialize<ObservableCollection<TargetAppListCardItemDTO>>(json, options) ?? [];
-            }
-            catch
-            {
-            }
+                TypeInfoResolver = DebrisToys.Global.Helper.AppJsonContext.Default
+            };
+            TargetAppList = JsonSerializer.Deserialize<ObservableCollection<TargetAppListCardItemDTO>>(json, options) ?? [];
         }
         public override async Task ApplyConfig()
         {

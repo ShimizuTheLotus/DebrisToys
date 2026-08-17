@@ -25,7 +25,7 @@ namespace DebrisToys.Toys.NoTaskbar
     /// </summary>
     public sealed partial class NoTaskbarPage : Page
     {
-        public NoTaskbarConfig Config { get; set; } = new();
+        public NoTaskbarConfig Config { get; set; } = NoTaskbarConfig.Current;
 
         private void RegisterConfigPropertyChanged()
         {
@@ -91,11 +91,7 @@ namespace DebrisToys.Toys.NoTaskbar
         {
             if (sender is ToggleSwitch toggleSwitch)
             {
-                bool isOn = toggleSwitch.IsOn;
-                if (Config.IsEnabled != isOn)
-                {
-                    Config.IsEnabled = isOn;
-                }
+                Config.IsEnabled = toggleSwitch.IsOn;
             }
         }
 
@@ -103,11 +99,7 @@ namespace DebrisToys.Toys.NoTaskbar
         {
             if (sender is ToggleSwitch toggleSwitch)
             {
-                bool isOn = toggleSwitch.IsOn;
-                if (Config.IsStartupEnabled != isOn)
-                {
-                    Config.IsStartupEnabled = isOn;
-                }
+                Config.IsStartupEnabled = toggleSwitch.IsOn;
             }
         }
     }

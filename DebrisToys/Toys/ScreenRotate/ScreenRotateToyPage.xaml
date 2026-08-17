@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page x:Class="DebrisToys.Toys.ScreenRotate.ScreenRotateToyPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:DebrisToys.Toys.ScreenRotate"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:ui="using:DebrisToys.UI.Control"
+      mc:Ignorable="d">
+
+    <ScrollView>
+        <StackPanel Margin="{ThemeResource ToolPagePadding}"
+                    Spacing="{ThemeResource ToyPageSpacing}"
+                    MaxWidth="{ThemeResource ToyPageContentMaxWidth}">
+            <ui:Card x:Uid="Toys_ScreenRotate_Card_IsEnabled">
+                <ui:Card.RightPartElement>
+                    <ToggleSwitch x:Name="IsEnabledToggleSwitch"
+                                  Style="{ThemeResource RightAlignedCompactToggleSwitchStyle}"
+                                  Toggled="IsEnabledToggleSwitch_Toggled" />
+                </ui:Card.RightPartElement>
+            </ui:Card>
+            <ui:Card x:Uid="Toys_ScreenRotate_Card_Landscape_Hotkey">
+                <ui:Card.RightPartElement>
+                    <ui:HotkeyCardEditEntryButton HotkeyIdentifier="ScreenRotateToy.ToLandscape" />
+                </ui:Card.RightPartElement>
+            </ui:Card>
+            <ui:Card x:Uid="Toys_ScreenRotate_Card_LandscapeFlipped_Hotkey">
+                <ui:Card.RightPartElement>
+                    <ui:HotkeyCardEditEntryButton HotkeyIdentifier="ScreenRotateToy.ToLandscapeFlipped" />
+                </ui:Card.RightPartElement>
+            </ui:Card>
+            <ui:Card x:Uid="Toys_ScreenRotate_Card_ToPortrait_Hotkey">
+                <ui:Card.RightPartElement>
+                    <ui:HotkeyCardEditEntryButton HotkeyIdentifier="ScreenRotateToy.ToPortrait" />
+                </ui:Card.RightPartElement>
+            </ui:Card>
+            <ui:Card x:Uid="Toys_ScreenRotate_Card_ToPortraitFlipped_Hotkey">
+                <ui:Card.RightPartElement>
+                    <ui:HotkeyCardEditEntryButton HotkeyIdentifier="ScreenRotateToy.ToPortraitFlipped" />
+                </ui:Card.RightPartElement>
+            </ui:Card>
+        </StackPanel>
+    </ScrollView>
+</Page>

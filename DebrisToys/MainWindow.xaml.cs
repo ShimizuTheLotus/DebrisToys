@@ -1,5 +1,6 @@
 using DebrisToys.Toys.IMEBlocker;
 using DebrisToys.Toys.NoTaskbar;
+using DebrisToys.Toys.ScreenRotate;
 using DebrisToys.UI.Page;
 using Microsoft.UI.Input;
 using Microsoft.UI.Windowing;
@@ -97,6 +98,10 @@ namespace DebrisToys
             else if (args.InvokedItem == IMEBlockerItem.Content)
             {
                 navigationTargetType = typeof(IMEBlockerPage);
+            }
+            else if (args.InvokedItem == ScreenRotateItem.Content)
+            {
+                navigationTargetType = typeof(ScreenRotateToyPage);
             }
 
             FrameNavigationOptions navOptions = new FrameNavigationOptions();

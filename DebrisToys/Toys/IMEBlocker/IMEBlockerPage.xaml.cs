@@ -29,13 +29,11 @@ namespace DebrisToys.Toys.IMEBlocker
     /// </summary>
     public sealed partial class IMEBlockerPage : Page
     {
-
         public IMEBlockerConfig Config { get; set; } = IMEBlockerConfig.Current;
         public IMEBlocker IMEBlocker { get; set; } = IMEBlocker.Current;
         private void RegisterConfigPropertyChanged()
         {
             IMEBlockerConfig.PropertyChanged += IMEBlockerConfig_PropertyChanged;
-            ;
         }
         private void UnregisterConfigPropertyChanged()
         {

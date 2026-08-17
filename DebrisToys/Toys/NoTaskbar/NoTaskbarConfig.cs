@@ -5,6 +5,7 @@ using ShimizuToolkit.HotkeyWinUI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
@@ -56,36 +57,30 @@ namespace DebrisToys.Toys.NoTaskbar
         public string IsEnabledConfigPath => System.IO.Path.Combine(ConfigBasePath, "isEnabled");
         public string IsStartupEnabledConfigPath => System.IO.Path.Combine(ConfigBasePath, "isStartupEnabled");
 
+        [UnconditionalSuppressMessage("Trimming", "IL2026:Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code", Justification = "<Pending>")]
         private async Task ApplyIsEnabledConfig()
         {
-            try
+            string? json = await ToysConfigManager.Current.GetConfig(IsEnabledConfigPath);
+            if (string.IsNullOrWhiteSpace(json))
+                return;
+            var options = new JsonSerializerOptions
             {
-                string? json = await ToysConfigManager.Current.GetConfig(IsEnabledConfigPath);
-                var options = new JsonSerializerOptions
-                {
-                    TypeInfoResolver = DebrisToys.Global.Helper.AppJsonContext.Default
-                };
-                IsEnabled = JsonSerializer.Deserialize<bool>(json, options);
-            }
-            catch
-            {
-            }
+                TypeInfoResolver = DebrisToys.Global.Helper.AppJsonContext.Default
+            };
+            IsEnabled = JsonSerializer.Deserialize<bool>(json, options);
         }
 
+        [UnconditionalSuppressMessage("Trimming", "IL2026:Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code", Justification = "<Pending>")]
         private async Task ApplyIsStartupEnabledConfig()
         {
-            try
+            string? json = await ToysConfigManager.Current.GetConfig(IsStartupEnabledConfigPath);
+            if (string.IsNullOrWhiteSpace(json))
+                return;
+            var options = new JsonSerializerOptions
             {
-                string? json = await ToysConfigManager.Current.GetConfig(IsStartupEnabledConfigPath);
-                var options = new JsonSerializerOptions
-                {
-                    TypeInfoResolver = DebrisToys.Global.Helper.AppJsonContext.Default
-                };
-                IsStartupEnabled = JsonSerializer.Deserialize<bool>(json, options);
-            }
-            catch
-            {
-            }
+                TypeInfoResolver = DebrisToys.Global.Helper.AppJsonContext.Default
+            };
+            IsStartupEnabled = JsonSerializer.Deserialize<bool>(json, options);
         }
 
         public override async Task ApplyConfig()
