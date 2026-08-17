@@ -5,25 +5,22 @@ using System.Text;
 
 namespace DebrisToys.UI.Tray
 {
-    internal class RightTrayMenu : ShimizuToolkit.TrayIconWinUI.UI.TrayMenuFlyout
+    internal class RightTrayMenu
     {
-        public RightTrayMenu()
+        public static ShimizuToolkit.TrayIconWinUI.UI.TrayMenuFlyout CreateMenu()
         {
-            AddMenuItems();
+            var f = new ShimizuToolkit.TrayIconWinUI.UI.TrayMenuFlyout();
+            f.AddMenuItem("Open MainWindow", ShowMainWindow);
+            f.AddMenuItem("Exit", ExitApp);
+            return f;
         }
 
-        private void AddMenuItems()
-        {
-            AddMenuItem("Open MainWindow", ShowMainWindow);
-            AddMenuItem("Exit", ExitApp);
-        }
-
-        private void ShowMainWindow()
+        private static void ShowMainWindow()
         {
             App.MainWindow?.Activate();
         }
 
-        public void ExitApp()
+        private static void ExitApp()
         {
             App.RequestExitApp();
         }

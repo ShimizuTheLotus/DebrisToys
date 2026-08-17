@@ -60,6 +60,9 @@ namespace DebrisToys
             e.Handled = true;
             Debug.Write(e.Exception + ": ");
             Debug.WriteLine(e.Message);
+            File.WriteAllText(
+            System.IO.Path.Combine(System.IO.Path.GetTempPath(), "DebrisToysError.log"),
+            $"{DateTime.Now}: {e.Exception.ToString()}: {e.Exception.Message.ToString()}");
         }
 
         private void CurrentDomain_ProcessExit(object? sender, EventArgs e)
@@ -115,9 +118,9 @@ namespace DebrisToys
             }
             TrayWindow = new();
             ShimizuToolkit.TrayIconWinUI.TrayIconManager.Current.LeftClickAction += ShowTrayWindow;
-            ShimizuToolkit.TrayIconWinUI.TrayIconManager.Current.RightMenuWindow = new ShimizuToolkit.TrayIconWinUI.UI.TrayFlyoutBaseWindow(() =>
+            ShimizuToolkit.TrayIconWinUI.TrayIconManager.Current.RightMenuWindow = new ShimizuToolkit.TrayIconWinUI.UI.TrayFlyoutBaseWindow(static () =>
             {
-                return new DebrisToys.UI.Tray.RightTrayMenu();
+                return DebrisToys.UI.Tray.RightTrayMenu.CreateMenu();
             });
         }
 
