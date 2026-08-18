@@ -15,6 +15,7 @@
 		<EnableConfigurationBindingGenerator>true</EnableConfigurationBindingGenerator>
 	</PropertyGroup>
 	<ItemGroup>
+	  <None Remove="Themes\BigIconNavigationViewItemStyle.xaml" />
 	  <None Remove="Themes\Brush.xaml" />
 	  <None Remove="Themes\Title.xaml" />
 	  <None Remove="Themes\TransparentFrameNavigationView.xaml" />
@@ -70,6 +71,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </Page>
 	  <Page Update="Themes\Brush.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	  <Page Update="Themes\BigIconNavigationViewItemStyle.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </Page>
 	  <None Update="Themes\RightAlignedCompactToggleSwitchStyle.xaml">

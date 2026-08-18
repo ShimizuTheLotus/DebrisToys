@@ -8,6 +8,7 @@
         <ResourceDictionary Source="/Themes/Brush.xaml" />
         <ResourceDictionary Source="/Themes/TransparentFrameNavigationView.xaml" />
         <ResourceDictionary Source="/Themes/Title.xaml" />
+        <ResourceDictionary Source="/Themes/BigIconNavigationViewItemStyle.xaml" />
         <ResourceDictionary Source="/UI/Control/Card.xaml" />
         <ResourceDictionary Source="/UI/Control/TargetAppListCard.xaml" />
         <ResourceDictionary Source="/UI/Control/TargetAppListCardItem.xaml" />

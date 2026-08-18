@@ -74,23 +74,30 @@
                     <NavigationViewItemSeparator />
                     <NavigationViewItem x:Name="NoTaskbarItem"
                                         Content="No Taskbar"
-                                        x:Uid="MainWindow_NavigationView_Item_NoTaskBar.Content">
+                                        x:Uid="MainWindow_NavigationView_Item_NoTaskBar.Content"
+                                        Style="{ThemeResource BigIconNavigationViewItemStyle}">
                         <NavigationViewItem.Icon>
                             <BitmapIcon UriSource="ms-appx:///Images/Icon/NoTaskBar.png"
-                                        ShowAsMonochrome="False" />
+                                        ShowAsMonochrome="False"
+                                        Margin="40 0 0 0"/>
                         </NavigationViewItem.Icon>
                     </NavigationViewItem>
                     <NavigationViewItem x:Name="IMEBlockerItem"
                                         Content="IME Blocker"
-                                        x:Uid="MainWindow_NavigationView_Item_IMEBlocker.Content">
+                                        x:Uid="MainWindow_NavigationView_Item_IMEBlocker.Content"
+                                        Style="{ThemeResource BigIconNavigationViewItemStyle}">
                         <NavigationViewItem.Icon>
-                            <ImageIcon Source="ms-appx:///Images/Icon/IMEBlocker.svg" />
+                            <ImageIcon Source="ms-appx:///Images/Icon/IMEBlocker.svg" 
+                                       Margin="450"/>
                         </NavigationViewItem.Icon>
                     </NavigationViewItem>
                     <NavigationViewItem x:Name="ScreenRotateItem"
                                         Content="Screen Rotate"
-                                        x:Uid="MainWindow_NavigationView_Item_ScreenRotate.Content">
-
+                                        x:Uid="MainWindow_NavigationView_Item_ScreenRotate.Content"
+                                        Style="{ThemeResource BigIconNavigationViewItemStyle}">
+                        <NavigationViewItem.Icon>
+                            <ImageIcon Source="ms-appx:///Images/Icon/ScreenRotate.png" />
+                        </NavigationViewItem.Icon>
                     </NavigationViewItem>
                 </NavigationView.MenuItems>
             </NavigationView>

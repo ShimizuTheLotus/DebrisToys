@@ -13,6 +13,9 @@
                     Spacing="{ThemeResource ToyPageSpacing}"
                     MaxWidth="{ThemeResource ToyPageContentMaxWidth}">
             <ui:Card x:Uid="Toys_ScreenRotate_Card_IsEnabled">
+                <ui:Card.IconElement>
+                    <ImageIcon Source="ms-appx:///Images/Icon/ScreenRotate.png" />
+                </ui:Card.IconElement>
                 <ui:Card.RightPartElement>
                     <ToggleSwitch x:Name="IsEnabledToggleSwitch"
                                   Style="{ThemeResource RightAlignedCompactToggleSwitchStyle}"

@@ -82,12 +82,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\Icon\debris.ico" />
+    <Content Include="Images\Icon\NoTaskBar.png" />
     <Content Include="Images\Icon\GitHub_Invertocat_Black.png" />
     <Content Include="Images\Icon\GitHub_Invertocat_Black_Clearspace.png" />
-    <Content Include="Images\Icon\NoTaskBar.png" />
     <Content Include="Images\Icon\IMEBlocker.svg" />
-    <Content Include="Images\Icon\ico.ico" />
     <Content Include="Images\debris.png" />
+    <Content Include="Images\Icon\ScreenRotate.png" />
     <Content Include="Images\LargeTile.scale-100.png" />
     <Content Include="Images\LargeTile.scale-125.png" />
     <Content Include="Images\LargeTile.scale-150.png" />
