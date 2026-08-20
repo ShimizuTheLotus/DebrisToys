@@ -1,5 +1,5 @@
 ﻿using DebrisToys.Global.Helper;
-using DebrisToys.Toys.NoTaskbar;
+using DebrisToys.Toys.ScreenRotate;
 using DebrisToys.ToysManager;
 using DebrisToys.ToysManager.Base;
 using ShimizuToolkit.HotkeyWinUI;
@@ -12,9 +12,9 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace DebrisToys.Toys.ScreenRotate
+namespace DebrisToys.Toys.SmartPaste
 {
-    public class ScreenRotateToyConfig : ToyConfigBase<ScreenRotateToyConfig>
+    public class SmartPasteConfig : ToyConfigBase<SmartPasteConfig>
     {
         public static event PropertyChangedEventHandler? PropertyChanged;
 
@@ -40,14 +40,38 @@ namespace DebrisToys.Toys.ScreenRotate
             }
         }
 
-        public readonly string ConfigBasePath = "ScreenRotate";
+        public bool IsAutoReplaceEnabled
+        {
+            get => field;
+            set
+            {
+                if (field != value)
+                {
+                    field = value;
+                    SaveIsAutoReplaceEnabledConfig();
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public Dictionary<string, string> ReplaceValues = new() { { "A", "B" } };
+
+        public readonly string ConfigBasePath = "SmartPaste";
         public string IsEnabledConfigPath => System.IO.Path.Combine(ConfigBasePath, "isEnabled");
+        public string IsAutoReplaceEnabledConfigPath => System.IO.Path.Combine(ConfigBasePath, "isAutoReplacedEnabled");
 
         private async void SaveIsEnabledConfig()
         {
             var options = new JsonSerializerOptions { WriteIndented = true };
             string json = JsonSerializer.Serialize(IsEnabled, AppJsonContext.Default.Boolean);
             ToysConfigManager.Current.SaveConfig(IsEnabledConfigPath, json);
+        }
+
+        private async void SaveIsAutoReplaceEnabledConfig()
+        {
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string json = JsonSerializer.Serialize(IsAutoReplaceEnabled, AppJsonContext.Default.Boolean);
+            ToysConfigManager.Current.SaveConfig(IsAutoReplaceEnabledConfigPath, json);
         }
 
         [UnconditionalSuppressMessage("Trimming", "IL2026:Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code", Justification = "<Pending>")]
@@ -63,9 +87,22 @@ namespace DebrisToys.Toys.ScreenRotate
             IsEnabled = JsonSerializer.Deserialize<bool>(json, options);
         }
 
+        private async Task ApplyIsAutoReplaceEnabledConfig()
+        {
+            string? json = await ToysConfigManager.Current.GetConfig(IsAutoReplaceEnabledConfigPath);
+            if (string.IsNullOrWhiteSpace(json))
+                return;
+            var options = new JsonSerializerOptions
+            {
+                TypeInfoResolver = DebrisToys.Global.Helper.AppJsonContext.Default
+            };
+            IsAutoReplaceEnabled = JsonSerializer.Deserialize<bool>(json, options);
+        }
+
         public override async Task ApplyConfig()
         {
             await ApplyIsEnabledConfig();
+            await ApplyIsAutoReplaceEnabledConfig();
         }
 
         public override void SaveConfig()

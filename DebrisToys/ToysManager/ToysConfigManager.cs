@@ -1,6 +1,7 @@
 ﻿using DebrisToys.Toys.IMEBlocker;
 using DebrisToys.Toys.NoTaskbar;
 using DebrisToys.Toys.ScreenRotate;
+using DebrisToys.Toys.SmartPaste;
 using DebrisToys.ToysManager.Base;
 using DebrisToys.ToysManager.Interface;
 using System;
@@ -40,13 +41,15 @@ namespace DebrisToys.ToysManager
                 NoTaskbarConfig.Current,
                 IMEBlockerConfig.Current,
                 ScreenRotateToyConfig.Current,
+                SmartPasteConfig.Current,
             ];
 
             Toys =
             [
                 TaskbarHideToy.Current,
                 IMEBlocker.Current,
-                ScreenRotateToy.Current
+                ScreenRotateToy.Current,
+                SmartPasteToy.Current,
             ];
 
             RunToys();

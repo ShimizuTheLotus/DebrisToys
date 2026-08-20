@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page x:Class="DebrisToys.Toys.SmartPaste.SmartPastePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:DebrisToys.Toys.SmartPaste"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:ui="using:DebrisToys.UI.Control"
+      mc:Ignorable="d">
+
+    <ScrollView>
+        <StackPanel Margin="{ThemeResource ToolPagePadding}"
+                    Spacing="{ThemeResource ToyPageSpacing}"
+                    MaxWidth="{ThemeResource ToyPageContentMaxWidth}">
+            <ui:Card x:Uid="Toys_SmartPaste_Card_IsEnabled">
+                <ui:Card.RightPartElement>
+                    <ToggleSwitch x:Name="IsEnabledToggleSwitch"
+                                  Toggled="IsEnabledToggleSwitch_Toggled" />
+                </ui:Card.RightPartElement>
+            </ui:Card>
+            <ui:Card x:Uid="Toys_SmartPaste_Card_AutoReplace">
+                <ui:Card.RightPartElement>
+                    <ToggleSwitch x:Name="IsAutoReplaceEnabledToggleSwitch"
+                                  Toggled="IsAutoReplaceEnabledToggleSwitch_Toggled" />
+                </ui:Card.RightPartElement>
+            </ui:Card>
+        </StackPanel>
+    </ScrollView>
+</Page>

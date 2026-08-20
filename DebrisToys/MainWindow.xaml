@@ -99,6 +99,16 @@
                             <ImageIcon Source="ms-appx:///Images/Icon/ScreenRotate.png" />
                         </NavigationViewItem.Icon>
                     </NavigationViewItem>
+                    <NavigationViewItem x:Name="SmartPasteItem"
+                                        Content="Smart Paste"
+                                        x:Uid="MainWindow_NavigationView_Item_SmartPaste.Content"
+                                        Style="{ThemeResource BigIconNavigationViewItemStyle}">
+                    </NavigationViewItem>
+                    <NavigationViewItem x:Name="ForcedWindowResizeItem"
+                                        Content="Forced Window Resize"
+                                        x:Uid="MainWindow_NavigationView_Item_ForcedWindowResize.Content"
+                                        Style="{ThemeResource BigIconNavigationViewItemStyle}">
+                    </NavigationViewItem>
                 </NavigationView.MenuItems>
             </NavigationView>
         </Grid>

@@ -1,6 +1,8 @@
+using DebrisToys.Toys.ForcedWindowResize;
 using DebrisToys.Toys.IMEBlocker;
 using DebrisToys.Toys.NoTaskbar;
 using DebrisToys.Toys.ScreenRotate;
+using DebrisToys.Toys.SmartPaste;
 using DebrisToys.UI.Page;
 using Microsoft.UI.Input;
 using Microsoft.UI.Windowing;
@@ -102,6 +104,14 @@ namespace DebrisToys
             else if (args.InvokedItem == ScreenRotateItem.Content)
             {
                 navigationTargetType = typeof(ScreenRotateToyPage);
+            }
+            else if (args.InvokedItem == SmartPasteItem.Content)
+            {
+                navigationTargetType = typeof(SmartPastePage);
+            }
+            else if (args.InvokedItem == ForcedWindowResizeItem.Content)
+            {
+                navigationTargetType = typeof(ForcedWindowResizePage);
             }
 
             FrameNavigationOptions navOptions = new FrameNavigationOptions();

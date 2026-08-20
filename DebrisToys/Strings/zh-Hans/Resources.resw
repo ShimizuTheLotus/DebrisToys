@@ -204,4 +204,16 @@
   <data name="Toys_ScreenRotate_Card_ToPortraitFlipped_Hotkey.Title" xml:space="preserve">
     <value>快捷键：纵向（翻转）</value>
   </data>
+  <data name="Toys_SmartPaste_Card_IsEnabled.Title" xml:space="preserve">
+    <value>启用</value>
+  </data>
+  <data name="Toys_SmartPaste_Card_AutoReplace.Title" xml:space="preserve">
+    <value>自动替换</value>
+  </data>
+  <data name="MainWindow_NavigationView_Item_SmartPaste.Content" xml:space="preserve">
+    <value>智能粘贴</value>
+  </data>
+  <data name="MainWindow_NavigationView_Item_ForcedWindowResize.Content" xml:space="preserve">
+    <value>强制缩放窗口</value>
+  </data>
 </root>

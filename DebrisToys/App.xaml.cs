@@ -1,6 +1,8 @@
-﻿using DebrisToys.ToysManager;
+﻿using DebrisToys.Global.Helper;
+using DebrisToys.ToysManager;
 using DebrisToys.ToysManager.Interface;
 using Microsoft.UI;
+using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -40,6 +42,7 @@ namespace DebrisToys
     {
         public static Window? MainWindow;
         public static Window? TrayWindow;
+        public static Window? MessageWindow;
 
         private readonly string hotkeyConfigPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config", "Hotkeys");
 
@@ -77,6 +80,8 @@ namespace DebrisToys
         /// <param name="args">Details about the launch request and process.</param>
         protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
+            MessageWindow = new();
+
             MainWindow = new MainWindow();
             MainWindow.Activate();
             MainWindow.Closed += MainWindow_Closed;
@@ -88,11 +93,18 @@ namespace DebrisToys
                 MainWindow.AppWindow.Hide();
             }
 
+            // Set helper HWND
+            nint messageWindowHandle = WinRT.Interop.WindowNative.GetWindowHandle(MessageWindow);
+            HotKeyManager.Current.UseExternalHwnd(messageWindowHandle);
+
+            DispatcherQueue.GetForCurrentThread().TryEnqueue(() => ForegroundWindow.Current.StartMonitoring());
+
             HotKeyManager.Current.HotkeyConfigPath = hotkeyConfigPath;
             await HotKeyManager.Current.LoadHotkeyConfig();
 
             ToysConfigManager.Current.Initialize();
             SetUpTrayIcon();
+
         }
 
         private void MainWindow_Closed(object sender, WindowEventArgs args)
@@ -116,6 +128,7 @@ namespace DebrisToys
                 };
                 ShimizuToolkit.TrayIconWinUI.TrayIconManager.Current.SetNotifyIcon(notifyIcon);
             }
+
             TrayWindow = new();
             ShimizuToolkit.TrayIconWinUI.TrayIconManager.Current.LeftClickAction += ShowTrayWindow;
             ShimizuToolkit.TrayIconWinUI.TrayIconManager.Current.RightMenuWindow = new ShimizuToolkit.TrayIconWinUI.UI.TrayFlyoutBaseWindow(static () =>
@@ -144,11 +157,12 @@ namespace DebrisToys
             TrayWindow.Activate();
         }
 
-        public static void CleanOnExit()
+        public void CleanOnExit()
         {
             ToysConfigManager.Current.RecoverStatus();
             HotKeyManager.Current.Dispose();
             ShimizuToolkit.TrayIconWinUI.TrayIconManager.Current.Dispose();
+            MessageWindow?.Close();
         }
 
         public static void RequestExitApp()
