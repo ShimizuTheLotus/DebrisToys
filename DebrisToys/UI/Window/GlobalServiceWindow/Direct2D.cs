@@ -13,6 +13,7 @@ using System.IO;
 using DWrite;
 #endif
 
+#nullable disable
 namespace Direct2D
 {
     public enum D2D1_FACTORY_TYPE : uint

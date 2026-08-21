@@ -12,5 +12,4 @@ GetClassName
 GetWindowText
 GetWindowThreadProcessId
 DwmGetWindowAttribute
-WindowInfo
 Windows.Win32.Graphics.Dwm.DWMWINDOWATTRIBUTE

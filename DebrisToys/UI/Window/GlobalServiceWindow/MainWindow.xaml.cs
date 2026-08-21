@@ -31,6 +31,7 @@ using System.Text;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
+#nullable disable
 namespace WinUI3_SwapChainPanel_Layered
 {
     /// <summary>
@@ -999,7 +1000,7 @@ namespace WinUI3_SwapChainPanel_Layered
                         DeleteObject(hBrush);
                         return 1;
                     }
-                    break;
+                    //break;
             }
             return DefSubclassProc(hWnd, uMsg, wParam, lParam);
         }
