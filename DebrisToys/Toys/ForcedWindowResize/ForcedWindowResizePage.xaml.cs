@@ -32,7 +32,7 @@ namespace DebrisToys.Toys.ForcedWindowResize
 
         public void UpdateClassName()
         {
-            AppClassNameTextBlock.Text = DebrisToys.Global.Helper.ForegroundWindow.Current.ClassName;
+            AppClassNameTextBlock.Text = DebrisToys.Global.Helper.ForegroundWindow.Current.Title;
         }
     }
 }

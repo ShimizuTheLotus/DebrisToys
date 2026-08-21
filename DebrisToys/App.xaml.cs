@@ -97,7 +97,7 @@ namespace DebrisToys
             nint messageWindowHandle = WinRT.Interop.WindowNative.GetWindowHandle(MessageWindow);
             HotKeyManager.Current.UseExternalHwnd(messageWindowHandle);
 
-            DispatcherQueue.GetForCurrentThread().TryEnqueue(() => ForegroundWindow.Current.StartMonitoring());
+            ForegroundWindow.Current.StartMonitoring();
 
             HotKeyManager.Current.HotkeyConfigPath = hotkeyConfigPath;
             await HotKeyManager.Current.LoadHotkeyConfig();

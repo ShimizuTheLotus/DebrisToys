@@ -16,6 +16,12 @@ namespace DebrisToys.Global.Helper
     {
         public nint Handle => _hWnd;
 
+        // Keep a strong reference to the delegate to prevent GC.
+        private WINEVENTPROC _winEventProcDelegate;
+
+        // Keep the handle in case you want to UnhookWinEvent later.
+        private HWINEVENTHOOK _hook;
+
         public string ClassName
         {
             get
@@ -90,6 +96,7 @@ namespace DebrisToys.Global.Helper
 
         public ForegroundWindow()
         {
+            _winEventProcDelegate = new WINEVENTPROC(WinEventProc);
         }
 
         public static ForegroundWindow Current
@@ -113,24 +120,15 @@ namespace DebrisToys.Global.Helper
             if (_ismonitoring)
                 return;
             _ismonitoring = true;
-            var hook = SetWinEventHook(
+            _hook = SetWinEventHook(
                 EVENT_SYSTEM_FOREGROUND,
                 EVENT_SYSTEM_FOREGROUND,
                 HMODULE.Null,
-                WinEventProc,
+                _winEventProcDelegate,
                 0,
                 0,
                 WINEVENT_OUTOFCONTEXT | WINEVENT_SKIPOWNPROCESS
             );
-
-            //Task.Run(() =>
-            //{
-            //    while (GetMessage(out Windows.Win32.UI.WindowsAndMessaging.MSG msg, default, 0, 0))
-            //    {
-            //        TranslateMessage(in msg);
-            //        DispatchMessage(in msg);
-            //    }
-            //});
         }
 
         // Callback
@@ -148,10 +146,10 @@ namespace DebrisToys.Global.Helper
             {
                 _hWnd = currentHwnd;
             }
-            //foreach (var action in CallbackActions)
-            //{
-            //    action.Invoke();
-            //}
+            foreach (var action in CallbackActions)
+            {
+                action.Invoke();
+            }
         }
 
 
@@ -169,22 +167,6 @@ namespace DebrisToys.Global.Helper
             }
         }
 
-        //private unsafe string CallWin32ToGetPWSTR(int bufferLength, Func<PWSTR, int, int> getter)
-        //{
-        //    var buffer = ArrayPool<char>.Shared.Rent(bufferLength);
-        //    try
-        //    {
-        //        fixed (char* ptr = buffer)
-        //        {
-        //            getter(ptr, bufferLength);
-        //            return new string(ptr);
-        //        }
-        //    }
-        //    finally
-        //    {
-        //        ArrayPool<char>.Shared.Return(buffer);
-        //    }
-        //}
 
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         private static extern IntPtr GetForegroundWindow();
