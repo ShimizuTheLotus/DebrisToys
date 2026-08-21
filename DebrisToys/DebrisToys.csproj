@@ -33,6 +33,7 @@
 	  <None Remove="UI\Page\HomePage.xaml" />
 	  <None Remove="UI\Page\OpenSourceNoticePage.xaml" />
 	  <None Remove="UI\Page\SettingsPage.xaml" />
+	  <None Remove="UI\Window\GlobalServiceWindow\MainWindow.xaml" />
 	  <None Remove="UI\Window\OpenSourceNoticeWindow.xaml" />
 	</ItemGroup>
 	<ItemGroup>
@@ -53,7 +54,6 @@
 		</PackageReference>
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.2526" />
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="2.3.1" />
-		<PackageReference Include="System.Windows.Forms" Version="4.0.0" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(UseWindowsForms)' == 'true' OR '$(UseWPF)' == 'true'">
@@ -89,6 +89,9 @@
 	  <None Update="Themes\RightAlignedCompactToggleSwitchStyle.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </None>
+	  <Page Update="UI\Window\GlobalServiceWindow\MainWindow.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
 	  <Page Update="Toys\ForcedWindowResize\ForcedWindowResizePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </Page>

@@ -33,15 +33,17 @@ namespace DebrisToys.UI.Page
 
             OpenSourceNoticeInfo.Add(new()
             {
-                PackageName = "Microsoft.WindowsAppSDK",
+                CodeSourceName = "Microsoft.WindowsAppSDK",
+                Owner = "Microsoft",
                 Version = "2.3.1",
                 License = "MICROSOFT SOFTWARE LICENSE TERMS",
-                LicenseLink = "https://www.nuget.org/packages/Microsoft.WindowsAppSDK/2.3.1/License",
+                Link = "https://www.nuget.org/packages/Microsoft.WindowsAppSDK/2.3.1/License",
             });
             OpenSourceNoticeInfo.Add(new()
             {
-                PackageName = "System.Windows.Forms",
-                Version = "4.0.0.0",
+                CodeSourceName = "WinUI3_SwapChainPanel_Layered",
+                Owner = "castorix",
+                Link= "https://github.com/castorix/WinUI3_SwapChainPanel_Layered",
             });
 
             this.Loaded += OpenSourceNoticePage_Loaded;
@@ -53,19 +55,19 @@ namespace DebrisToys.UI.Page
             {
                 var card = new Card()
                 {
-                    Title = i.PackageName + " " + i.Version,
-                    Description = i.License,
+                    Title = i.CodeSourceName + " " + i.Version,
+                    Description = i.Owner + " | " + i.License,
                     Style = (Style)Application.Current.Resources["LinkCardStyle"],
                 };
-                if (i.License == "Unknown")
+                if (i.License == "Unknown Lisence" && string.IsNullOrWhiteSpace(i.Link))
                 {
                     card.ClearRightPartElement();
                 }
-                if (i.LicenseLink != null)
+                if (i.Link != null)
                 {
                     ProcessStartInfo psi = new ProcessStartInfo
                     {
-                        FileName = i.LicenseLink,
+                        FileName = i.Link,
                         UseShellExecute = true
                     };
                     card.Click += (s, e) => System.Diagnostics.Process.Start(psi);

@@ -34,6 +34,7 @@ namespace DebrisToys.Win32
         public const uint SWP_NOSIZE = 0x0001;
         public const uint SWP_NOZORDER = 0x0004;
 
+        public const int LWA_COLORKEY = 0x00000001;
         public const uint LWA_ALPHA = 0x00000002;
 
         public const int HWND_TOPMOST = -1;

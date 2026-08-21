@@ -1,6 +1,7 @@
 ﻿using DebrisToys.Global.Helper;
 using DebrisToys.ToysManager;
 using DebrisToys.ToysManager.Interface;
+using DebrisToys.UI.Window;
 using Microsoft.UI;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
@@ -43,6 +44,8 @@ namespace DebrisToys
         public static Window? MainWindow;
         public static Window? TrayWindow;
         public static Window? MessageWindow;
+
+        private Window? _overlayWindow;
 
         private readonly string hotkeyConfigPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config", "Hotkeys");
 
@@ -105,6 +108,12 @@ namespace DebrisToys
             ToysConfigManager.Current.Initialize();
             SetUpTrayIcon();
 
+
+            if (_overlayWindow == null)
+            {
+                _overlayWindow = new WinUI3_SwapChainPanel_Layered.MainWindow();
+            }
+            _overlayWindow.Activate();
         }
 
         private void MainWindow_Closed(object sender, WindowEventArgs args)
